@@ -2,25 +2,43 @@ export const hunter = [
   {
     title: 'Raw meat',
     name: 'rawMeat',
+    count: 0,
     recipe: {
-      knife: 2
+      tools: [
+        {
+          title: 'Knife',
+          name: 'knife',
+          dur: 2
+        }
+      ]
     }
   },
   {
     title: 'Leather',
     name: 'leather',
+    count: 0,
     recipe: {
-      knife: 1
+      tools: [
+        {
+          title: 'Knife',
+          name: 'knife',
+          dur: 1
+        }
+      ]
     }
   },
   {
     title: 'Feather',
     name: 'feather',
-    recipe: {}
-  }]
-
-export interface IItem {
-  title: string
-  name: string
-  recipe: object
-}
+    count: 0,
+    recipe: {
+      tools: [
+        {
+          title: 'Axe',
+          name: 'axe',
+          dur: 1
+        }
+      ]
+    }
+  }
+]
