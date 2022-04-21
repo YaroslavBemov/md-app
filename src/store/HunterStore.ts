@@ -1,29 +1,6 @@
 import { makeAutoObservable, toJS } from "mobx";
 import { hunter } from "../data/mining";
-
-interface IMaterial {
-  title: string
-  name: string
-  count: number
-}
-
-interface ITool {
-  title: string
-  name: string
-  dur: number
-}
-
-interface IRecipe {
-  materials: IMaterial[]
-  tools: ITool[]
-}
-
-interface IItem {
-  title: string
-  name: string
-  count: number
-  recipe: IRecipe
-}
+import { IItem, ITool, IMaterial } from '../interfaces/Item'
 
 export default class HunterStore {
   rootStore
@@ -47,24 +24,24 @@ export default class HunterStore {
     this.items.forEach(item => {
       if (item.count > 0) {
 
-        item.recipe.tools.forEach(recipeTool => {
+        item.recipe.tools?.forEach(recipeTool => {
 
           if (tools.length === 0) {
             tools.push({
               title: recipeTool.title,
               name: recipeTool.name,
-              dur: recipeTool.dur * item.count
+              dur: 0 - recipeTool.dur * item.count
             })
           } else {
             tools.forEach(tool => {
 
               if (tool.name === recipeTool.name) {
-                tool.dur += item.count * recipeTool.dur
+                tool.dur -= item.count * recipeTool.dur
               } else {
                 tools.push({
                   title: recipeTool.title,
                   name: recipeTool.name,
-                  dur: recipeTool.dur * item.count
+                  dur: 0 - recipeTool.dur * item.count
                 })
               }
             })
@@ -82,24 +59,24 @@ export default class HunterStore {
     this.items.forEach(item => {
       if (item.count > 0) {
 
-        item.recipe.materials.forEach(recipeMaterial => {
+        item.recipe.materials?.forEach(recipeMaterial => {
 
           if (materials.length === 0) {
             materials.push({
               title: recipeMaterial.title,
               name: recipeMaterial.name,
-              count: recipeMaterial.count * item.count
+              count: 0 - recipeMaterial.count * item.count
             })
           } else {
             materials.forEach(material => {
 
               if (material.name === recipeMaterial.name) {
-                material.count += item.count * recipeMaterial.count
+                material.count -= item.count * recipeMaterial.count
               } else {
                 materials.push({
                   title: recipeMaterial.title,
                   name: recipeMaterial.name,
-                  count: recipeMaterial.count * item.count
+                  count: 0 - recipeMaterial.count * item.count
                 })
               }
             })

@@ -64,11 +64,13 @@ function App() {
 
           {hunterStore.items.map(item => (
             <AccordionDetails key={item.name}>
-              <Paper sx={{
-                display: 'flex',
-                alignItems: 'center',
-                p: 2,
-              }}>
+              <Paper
+                elevation={3}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  p: 2,
+                }}>
                 {item.title}
 
                 {/* <IconButton onClick={handleAdd}>
@@ -83,10 +85,14 @@ function App() {
                   name={item.name}
                   value={item.count}
                   onChange={handleChange}
+                  label='Count'
+                  sx={{
+                    maxWidth: 80,
+                    ml: 2
+                  }}
                 >
                   {item.count}
                 </TextField>
-                {item.count}
               </Paper>
             </AccordionDetails>
           ))}

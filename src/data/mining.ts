@@ -1,4 +1,6 @@
-export const hunter = [
+import { IItem } from '../interfaces/Item'
+
+export const hunter: IItem[] = [
   {
     title: 'Raw meat',
     name: 'rawMeat',
@@ -11,7 +13,6 @@ export const hunter = [
           dur: 2
         }
       ],
-      materials: []
     }
   },
   {
@@ -30,6 +31,11 @@ export const hunter = [
         {
           title: 'Log',
           name: 'log',
+          count: 1
+        },
+        {
+          title: 'Raw meat',
+          name: 'rawMeat',
           count: 1
         }
       ]
