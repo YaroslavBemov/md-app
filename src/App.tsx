@@ -63,7 +63,7 @@ function App() {
           </AccordionSummary>
 
           {hunterStore.items.map(item => (
-            <AccordionDetails>
+            <AccordionDetails key={item.name}>
               <Paper sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -104,12 +104,17 @@ function App() {
 
           <AccordionDetails>
 
-            {hunterStore.toolsTotal?.map(tool => (
-              <Typography>
+            {hunterStore.totalTools?.map(tool => (
+              <Typography key={tool.name}>
                 {tool.title}: {tool.dur}
               </Typography>
             ))}
 
+            {hunterStore.totalMaterials?.map(material => (
+              <Typography key={material.name}>
+                {material.title}: {material.count}
+              </Typography>
+            ))}
 
           </AccordionDetails>
         </Accordion>
