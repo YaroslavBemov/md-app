@@ -110,15 +110,9 @@ function App() {
 
           <AccordionDetails>
 
-            {hunterStore.totalTools?.map(tool => (
-              <Typography key={tool.name}>
-                {tool.title}: {tool.dur}
-              </Typography>
-            ))}
-
-            {hunterStore.totalMaterials?.map(material => (
-              <Typography key={material.name}>
-                {material.title}: {material.count}
+            {hunterStore.total?.map(item => (
+              <Typography key={item.name}>
+                {item.title}: {item.count}
               </Typography>
             ))}
 

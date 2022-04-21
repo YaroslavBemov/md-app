@@ -1,6 +1,6 @@
 import { makeAutoObservable, toJS } from "mobx";
 import { hunter } from "../data/mining";
-import { IItem, ITool, IMaterial } from '../interfaces/Item'
+import { IItem, IBaseItem } from '../interfaces/Item'
 
 export default class HunterStore {
   rootStore
@@ -18,73 +18,60 @@ export default class HunterStore {
       }
     })
   }
-  get totalTools(): ITool[] {
-    const tools: ITool[] = []
+  get total(): IBaseItem[] {
+    const total: IBaseItem[] = []
 
     this.items.forEach(item => {
       if (item.count > 0) {
 
-        item.recipe.tools?.forEach(recipeTool => {
+        if (total.length === 0) {
 
-          if (tools.length === 0) {
-            tools.push({
-              title: recipeTool.title,
-              name: recipeTool.name,
-              dur: 0 - recipeTool.dur * item.count
+          total.push({
+            title: item.title,
+            name: item.name,
+            count: item.count
+          })
+
+          item.recipe.forEach(recipeItem => {
+            total.push({
+              title: recipeItem.title,
+              name: recipeItem.name,
+              count: 0 - recipeItem.count * item.count
             })
-          } else {
-            tools.forEach(tool => {
+          })
 
-              if (tool.name === recipeTool.name) {
-                tool.dur -= item.count * recipeTool.dur
-              } else {
-                tools.push({
-                  title: recipeTool.title,
-                  name: recipeTool.name,
-                  dur: 0 - recipeTool.dur * item.count
-                })
-              }
+        } else {
+
+          const detectedItem = total.find(totalItem => totalItem.name === item.name)
+
+          if (detectedItem) {
+            detectedItem.count += item.count
+          } else {
+            total.push({
+              title: item.title,
+              name: item.name,
+              count: item.count
             })
           }
-        })
+          item.recipe.forEach(recipeItem => {
+
+            const detectedRecipeItem = total.find(totalRecipeItem => totalRecipeItem.name === recipeItem.name)
+
+            if (detectedRecipeItem) {
+              detectedRecipeItem.count -= recipeItem.count * item.count
+            } else {
+              total.push({
+                title: recipeItem.title,
+                name: recipeItem.name,
+                count: 0 - recipeItem.count * item.count
+              })
+            }
+          })
+        }
       }
     })
 
-    return tools
+    return total
   }
 
-  get totalMaterials(): IMaterial[] {
-    const materials: IMaterial[] = []
-
-    this.items.forEach(item => {
-      if (item.count > 0) {
-
-        item.recipe.materials?.forEach(recipeMaterial => {
-
-          if (materials.length === 0) {
-            materials.push({
-              title: recipeMaterial.title,
-              name: recipeMaterial.name,
-              count: 0 - recipeMaterial.count * item.count
-            })
-          } else {
-            materials.forEach(material => {
-
-              if (material.name === recipeMaterial.name) {
-                material.count -= item.count * recipeMaterial.count
-              } else {
-                materials.push({
-                  title: recipeMaterial.title,
-                  name: recipeMaterial.name,
-                  count: 0 - recipeMaterial.count * item.count
-                })
-              }
-            })
-          }
-        })
-      }
-    })
-
-    return materials
-  }
 }
