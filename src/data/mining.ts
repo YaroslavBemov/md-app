@@ -1,64 +1,39 @@
 import { IItem } from '../interfaces/Item'
 
-export const hunter: IItem[] = [
+export const digger: IItem[] = [
   {
-    title: 'Raw meat',
-    name: 'rawMeat',
+    title: 'Stone',
+    name: 'stone',
     count: 0,
     recipe: [
       {
-        title: 'Knife',
-        name: 'knife',
+        title: 'Pickaxe',
+        name: 'pickaxe',
         count: 2
       }
     ],
   },
   {
-    title: 'Leather',
-    name: 'leather',
+    title: 'Limestone',
+    name: 'limestone',
     count: 0,
     recipe: [
       {
-        title: 'Knife',
-        name: 'knife',
-        count: 1
-      },
-      {
-        title: 'Log',
-        name: 'log',
-        count: 1
-      },
-      {
-        title: 'Raw meat',
-        name: 'rawMeat',
-        count: 1
+        title: 'Pickaxe',
+        name: 'pickaxe',
+        count: 2
       }
     ],
   },
   {
-    title: 'Feather',
-    name: 'feather',
+    title: 'Clay',
+    name: 'clay',
     count: 0,
     recipe: [
       {
-        title: 'Knife',
-        name: 'knife',
-        count: 1
-      },
-      {
-        title: 'Axe',
-        name: 'axe',
-        count: 1
-      },
-      {
-        title: 'Log',
-        name: 'log',
+        title: 'Shovel',
+        name: 'shovel',
         count: 2
-      },
-      {
-        title: 'Branch',
-        name: 'branch',
-        count: 4
       }
     ],
   }

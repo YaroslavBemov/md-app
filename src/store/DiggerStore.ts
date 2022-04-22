@@ -1,11 +1,11 @@
 import { makeAutoObservable } from "mobx";
-import { hunter } from "../data/hunting";
+import { digger } from "../data/mining";
 import { IItem, IBaseItem } from '../interfaces/Item'
 import { getTotal, changeCount } from "../helpers";
 
-export default class HunterStore {
+export default class DiggerStore {
   rootStore
-  items: IItem[] = hunter
+  items: IItem[] = digger
 
   constructor(rootStore: any) {
     makeAutoObservable(this)
