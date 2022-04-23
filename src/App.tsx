@@ -1,72 +1,78 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
 
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-
-import Paper from '@mui/material/Paper';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TextField from '@mui/material/TextField';
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useStore } from "./hooks/useStore";
 
-import Hunter from './components/Hunter';
-import Digger from './components/Digger';
+import Store from "./components/Store";
+import Total from "./components/Total";
 
 function App() {
-  const { total } = useStore()
+  const {
+    total,
+    hunterStore,
+    excavationShedStore,
+    woodshedStore,
+    smithyStore,
+  } = useStore();
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <Box
-        component='main'
+        component="main"
         sx={{
           backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
+            theme.palette.mode === "light"
               ? theme.palette.grey[100]
               : theme.palette.grey[900],
-          height: '100vh',
+          height: "100vh",
           flexGrow: 1,
-          overflow: 'auto'
+          overflow: "auto",
         }}
       >
         <Container>
-
-          <Hunter />
-          <Digger />
-
           <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Summary</Typography>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>Hunting</Typography>
             </AccordionSummary>
 
             <AccordionDetails>
-
-              {total
-                .sort((a, b) => a.count > b.count ? -1 : 1)
-                .map(item => (
-                  <Typography
-                    key={item.name}
-                    color={item.count < 0 ? 'red' : 'green'}
-                  >
-                    {item.title}: {item.count}
-                  </Typography>
-                ))}
-
+              <Store store={hunterStore} />
             </AccordionDetails>
           </Accordion>
 
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>Extraction</Typography>
+            </AccordionSummary>
+
+            <AccordionDetails>
+              <Store store={excavationShedStore} />
+              <Store store={woodshedStore} />
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>Production</Typography>
+            </AccordionSummary>
+
+            <AccordionDetails>
+              <Store store={smithyStore} />
+            </AccordionDetails>
+          </Accordion>
+
+          <Total total={total} />
         </Container>
-      </Box >
-    </Box >
+      </Box>
+    </Box>
   );
 }
 

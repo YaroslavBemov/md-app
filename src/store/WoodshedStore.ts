@@ -1,12 +1,12 @@
 import { makeAutoObservable } from "mobx";
-import { hunter } from "../data/hunting";
+import { woodshed } from "../data/extraction";
 import { IBaseItem, IRootStore, IStore } from "../interfaces";
 import { getTotal, changeCount } from "../helpers";
 
-export default class HunterStore implements IStore {
+export default class WoodshedStore implements IStore {
   rootStore;
-  items = hunter;
-  name = "Hunter";
+  items = woodshed;
+  name = "Woodshed";
 
   constructor(rootStore: IRootStore) {
     makeAutoObservable(this);

@@ -1,36 +1,182 @@
-export const smith = {
-  hummer: {
-    title: 'Hummer',
-    recipe: {
-      materials: {
-        log: 1,
-        branch: 5
+import { IItem } from "../interfaces";
+
+export const smithy: IItem[] = [
+  {
+    title: "Wooden Hummer",
+    name: "woodenHummer",
+    count: 0,
+    recipe: [
+      {
+        title: "Log",
+        name: "log",
+        count: 1,
       },
-      tools: {}
-    }
+      {
+        title: "Stick",
+        name: "stick",
+        count: 10,
+      },
+    ],
   },
-  knife: {
-    title: 'Knife',
-    recipe: {
-      materials: {
-        branch: 5,
-        stone: 2
+  {
+    title: "Wooden Shovel",
+    name: "woodenShovel",
+    count: 0,
+    recipe: [
+      {
+        title: "Log",
+        name: "log",
+        count: 2,
       },
-      tools: {
-        hummer: 1
-      }
-    }
+    ],
   },
-  axe: {
-    title: 'Axe',
-    recipe: {
-      materials: {
-        branch: 5,
-        stone: 3
+  {
+    title: "Stone Pickaxe",
+    name: "stonePickaxe",
+    count: 0,
+    recipe: [
+      {
+        title: "Log",
+        name: "log",
+        count: 1,
       },
-      tools: {
-        hummer: 2
-      }
-    }
-  }
-}
+      {
+        title: "Stone",
+        name: "stone",
+        count: 4,
+      },
+    ],
+  },
+  {
+    title: "Bronze Pickaxe",
+    name: "bronzePickaxe",
+    count: 0,
+    recipe: [
+      {
+        title: "Hummer",
+        name: "hummer",
+        count: 4,
+      },
+      {
+        title: "Log",
+        name: "log",
+        count: 1,
+      },
+      {
+        title: "Bronze Bar",
+        name: "bronzeBar",
+        count: 4,
+      },
+    ],
+  },
+  {
+    title: "Bronze Hummer",
+    name: "bronzeHummer",
+    count: 0,
+    recipe: [
+      {
+        title: "Hummer",
+        name: "hummer",
+        count: 4,
+      },
+      {
+        title: "Stick",
+        name: "stick",
+        count: 1,
+      },
+      {
+        title: "Bronze Bar",
+        name: "bronzeBar",
+        count: 2,
+      },
+    ],
+  },
+  {
+    title: "Bronze Axe",
+    name: "bronzeAxe",
+    count: 0,
+    recipe: [
+      {
+        title: "Hummer",
+        name: "hummer",
+        count: 4,
+      },
+      {
+        title: "Log",
+        name: "log",
+        count: 1,
+      },
+      {
+        title: "Bronze Bar",
+        name: "bronzeBar",
+        count: 4,
+      },
+    ],
+  },
+  {
+    title: "Bronze Knife",
+    name: "bronzeKnife",
+    count: 0,
+    recipe: [
+      {
+        title: "Hummer",
+        name: "hummer",
+        count: 4,
+      },
+      {
+        title: "Stick",
+        name: "stick",
+        count: 1,
+      },
+      {
+        title: "Bronze Bar",
+        name: "bronzeBar",
+        count: 2,
+      },
+    ],
+  },
+  {
+    title: "Stone Axe",
+    name: "stoneAxe",
+    count: 0,
+    recipe: [
+      {
+        title: "Hummer",
+        name: "hummer",
+        count: 2,
+      },
+      {
+        title: "Stone",
+        name: "stone",
+        count: 2,
+      },
+      {
+        title: "Stick",
+        name: "stick",
+        count: 10,
+      },
+    ],
+  },
+  {
+    title: "Stone Knife",
+    name: "stoneKnife",
+    count: 0,
+    recipe: [
+      {
+        title: "Hummer",
+        name: "hummer",
+        count: 2,
+      },
+      {
+        title: "Stone",
+        name: "stone",
+        count: 2,
+      },
+      {
+        title: "Stick",
+        name: "stick",
+        count: 5,
+      },
+    ],
+  },
+];
