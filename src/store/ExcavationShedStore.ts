@@ -11,6 +11,9 @@ export default class ExcavationShedStore implements IStore {
   constructor(rootStore: IRootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
+
+    const savedItems = localStorage.getItem(this.name)
+    this.items = savedItems ? JSON.parse(savedItems) : excavationShed
   }
 
   changeCount(name: string, value: number): void {

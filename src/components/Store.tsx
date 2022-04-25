@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { observer } from "mobx-react-lite";
 
 import Box from "@mui/material/Box";
@@ -9,6 +9,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 import { IStore } from "../interfaces";
 
@@ -22,6 +23,11 @@ const Store = ({ store }: PropType) => {
     store.changeCount(name, value);
   };
 
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
+    localStorage.setItem(store.name, JSON.stringify(store.items))
+  }
+
   return (
     <Accordion>
       <Paper elevation={3}>
@@ -30,7 +36,14 @@ const Store = ({ store }: PropType) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>{store.name}</Typography>
+          <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1
+          }}>
+            <Typography>{store.name}</Typography>
+            <Button onClick={handleClick}>Save</Button>
+          </Box>
         </AccordionSummary>
       </Paper>
 
