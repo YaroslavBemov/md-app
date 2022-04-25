@@ -23,10 +23,10 @@ const Store = ({ store }: PropType) => {
     store.changeCount(name, value);
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation()
-    localStorage.setItem(store.name, JSON.stringify(store.items))
-  }
+  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   event.stopPropagation()
+  //   localStorage.setItem(store.name, JSON.stringify(store.items))
+  // }
 
   return (
     <Accordion>
@@ -42,7 +42,7 @@ const Store = ({ store }: PropType) => {
             gap: 1
           }}>
             <Typography>{store.name}</Typography>
-            <Button onClick={handleClick}>Save</Button>
+            {/* <Button onClick={handleClick}>Save</Button> */}
           </Box>
         </AccordionSummary>
       </Paper>
