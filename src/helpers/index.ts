@@ -1,4 +1,4 @@
-import { IBaseItem, IItem } from "../interfaces";
+import { IBaseItem, IItem, IStore } from "../interfaces";
 
 export function getTotal(array: IItem[]): IBaseItem[] {
   const total: IBaseItem[] = [];
@@ -62,4 +62,8 @@ export function changeCount(array: IItem[], name: string, value: number): void {
       item.count = value;
     }
   });
+}
+
+export function saveToLS(store: IStore): void {
+  localStorage.setItem(store.name, JSON.stringify(store.items))
 }

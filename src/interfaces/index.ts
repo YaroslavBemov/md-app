@@ -19,4 +19,5 @@ export interface IStore {
 
 export interface IRootStore {
   get total(): IBaseItem[];
+  saveAll(): void
 }

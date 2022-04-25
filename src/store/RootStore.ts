@@ -4,7 +4,7 @@ import WoodshedStore from "./WoodshedStore";
 import SmithyStore from "./SmithyStore";
 
 import { IItem, IBaseItem, IRootStore } from "../interfaces";
-import { getTotal } from "../helpers";
+import { getTotal, saveToLS } from "../helpers";
 import UIStore from "./UiStore";
 
 export default class RootStore implements IRootStore {
@@ -31,5 +31,12 @@ export default class RootStore implements IRootStore {
     ];
 
     return getTotal(items);
+  }
+
+  saveAll = () => {
+    saveToLS(this.hunterStore)
+    saveToLS(this.excavationShedStore)
+    saveToLS(this.woodshedStore)
+    saveToLS(this.smithyStore)
   }
 }
