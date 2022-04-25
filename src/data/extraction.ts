@@ -62,6 +62,7 @@ export const woodshed: IItem[] = [
     title: "Firewood",
     name: "firewood",
     count: 0,
+    mult: 4,
     recipe: [
       {
         title: "Axe",
@@ -79,6 +80,7 @@ export const woodshed: IItem[] = [
     title: "Plank",
     name: "plank",
     count: 0,
+    mult: 2,
     recipe: [
       {
         title: "Axe",

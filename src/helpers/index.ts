@@ -4,12 +4,13 @@ export function getTotal(array: IItem[]): IBaseItem[] {
   const total: IBaseItem[] = [];
 
   array.forEach((item) => {
+    const mult = item.mult ?? 1
     if (item.count > 0) {
       if (total.length === 0) {
         total.push({
           title: item.title,
           name: item.name,
-          count: item.count,
+          count: item.count * mult,
         });
 
         item.recipe.forEach((recipeItem) => {
@@ -25,12 +26,12 @@ export function getTotal(array: IItem[]): IBaseItem[] {
         );
 
         if (detectedItem) {
-          detectedItem.count += item.count;
+          detectedItem.count += item.count * mult;
         } else {
           total.push({
             title: item.title,
             name: item.name,
-            count: item.count,
+            count: item.count * mult,
           });
         }
         item.recipe.forEach((recipeItem) => {
