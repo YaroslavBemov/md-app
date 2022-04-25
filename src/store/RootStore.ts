@@ -5,14 +5,17 @@ import SmithyStore from "./SmithyStore";
 
 import { IItem, IBaseItem, IRootStore } from "../interfaces";
 import { getTotal } from "../helpers";
+import UIStore from "./UiStore";
 
 export default class RootStore implements IRootStore {
+  uiStore: UIStore
   hunterStore: HunterStore;
   excavationShedStore: ExcavationShedStore;
   woodshedStore: WoodshedStore;
   smithyStore: SmithyStore;
 
   constructor() {
+    this.uiStore = new UIStore(this)
     this.hunterStore = new HunterStore(this);
     this.excavationShedStore = new ExcavationShedStore(this);
     this.woodshedStore = new WoodshedStore(this);
