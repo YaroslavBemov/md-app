@@ -1,19 +1,19 @@
 import { makeAutoObservable } from "mobx";
 import { woodshed } from "../data/extraction";
-import { IBaseItem, IRootStore, IStore, ITotal } from "../interfaces";
+import { IItem, IRootStore, IStore, ITotal } from "../interfaces";
 import { getTotal, changeCount } from "../helpers";
 
 export default class WoodshedStore implements IStore {
   rootStore;
-  items = woodshed;
+  items: IItem[] = [];
   name = "Woodshed";
 
   constructor(rootStore: IRootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 
-    const savedItems = localStorage.getItem(this.name)
-    this.items = savedItems ? JSON.parse(savedItems) : woodshed
+    const savedItems = localStorage.getItem(this.name);
+    this.items = savedItems ? JSON.parse(savedItems) : woodshed;
   }
 
   changeCount(name: string, value: number): void {
@@ -21,7 +21,7 @@ export default class WoodshedStore implements IStore {
   }
 
   reset(): void {
-    this.items = woodshed
+    this.items = woodshed;
   }
 
   get total(): ITotal[] {

@@ -1,19 +1,19 @@
 import { makeAutoObservable } from "mobx";
-import { hunter } from "../data/hunting";
+import { well } from "../data/extraction";
+import { changeCount, getTotal } from "../helpers";
 import { IItem, IRootStore, IStore, ITotal } from "../interfaces";
-import { getTotal, changeCount } from "../helpers";
 
-export default class HunterStore implements IStore {
+export default class KitchenStore implements IStore {
   rootStore;
   items: IItem[] = [];
-  name = "Hunter";
+  name = "Well";
 
   constructor(rootStore: IRootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 
     const savedItems = localStorage.getItem(this.name);
-    this.items = savedItems ? JSON.parse(savedItems) : hunter;
+    this.items = savedItems ? JSON.parse(savedItems) : well;
   }
 
   changeCount(name: string, value: number): void {
@@ -21,7 +21,7 @@ export default class HunterStore implements IStore {
   }
 
   reset(): void {
-    this.items = hunter;
+    this.items = well;
   }
 
   get total(): ITotal[] {

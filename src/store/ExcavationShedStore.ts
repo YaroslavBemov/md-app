@@ -1,19 +1,19 @@
 import { makeAutoObservable } from "mobx";
 import { excavationShed } from "../data/extraction";
-import { IBaseItem, IRootStore, IStore, ITotal } from "../interfaces";
+import { IItem, IRootStore, IStore, ITotal } from "../interfaces";
 import { getTotal, changeCount } from "../helpers";
 
 export default class ExcavationShedStore implements IStore {
   rootStore;
-  items = excavationShed;
+  items: IItem[] = [];
   name = "Excavation Shed";
 
   constructor(rootStore: IRootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 
-    const savedItems = localStorage.getItem(this.name)
-    this.items = savedItems ? JSON.parse(savedItems) : excavationShed
+    const savedItems = localStorage.getItem(this.name);
+    this.items = savedItems ? JSON.parse(savedItems) : excavationShed;
   }
 
   changeCount(name: string, value: number): void {
@@ -21,7 +21,7 @@ export default class ExcavationShedStore implements IStore {
   }
 
   reset(): void {
-    this.items = excavationShed
+    this.items = excavationShed;
   }
 
   get total(): ITotal[] {

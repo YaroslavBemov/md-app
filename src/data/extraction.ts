@@ -97,18 +97,117 @@ export const woodshed: IItem[] = [
   },
 ];
 
-
 export const mine: IItem[] = [
   {
-    title: "Log",
-    name: "log",
+    title: "Copper Ore",
+    name: "copperOre",
     count: 0,
     recipe: [
       {
-        title: "Axe",
-        name: "axe",
+        title: "Pickaxe",
+        name: "pickaxe",
         count: 2,
       },
     ],
   },
-]
+  {
+    title: "Tin Ore",
+    name: "tinOre",
+    count: 0,
+    recipe: [
+      {
+        title: "Pickaxe",
+        name: "pickaxe",
+        count: 2,
+      },
+    ],
+  },
+  {
+    title: "Iron Ore",
+    name: "ironOre",
+    count: 0,
+    recipe: [
+      {
+        title: "Pickaxe",
+        name: "pickaxe",
+        count: 2,
+      },
+    ],
+  },
+  {
+    title: "Stone",
+    name: "stone",
+    count: 0,
+    recipe: [
+      {
+        title: "Pickaxe",
+        name: "pickaxe",
+        count: 2,
+      },
+    ],
+  },
+  {
+    title: "Salt",
+    name: "salt",
+    count: 0,
+    recipe: [
+      {
+        title: "Pickaxe",
+        name: "pickaxe",
+        count: 2,
+      },
+    ],
+  },
+];
+
+export const well: IItem[] = [
+  {
+    title: "Bucket of Water",
+    name: "bucketOfWater",
+    count: 0,
+    recipe: [
+      {
+        title: "Bucket",
+        name: "bucket",
+        count: 1,
+      },
+    ],
+  },
+  {
+    title: "Waterskin with Water",
+    name: "waterskinWithWater",
+    count: 0,
+    recipe: [
+      {
+        title: "Waterskin",
+        name: "waterskin",
+        count: 1,
+      },
+    ],
+  },
+];
+
+export const herbalistHut: IItem[] = [
+  {
+    title: "Poison",
+    name: "poison",
+    count: 0,
+    recipe: [
+      {
+        title: "Wooden Vial",
+        name: "woodenvial",
+        count: 1,
+      },
+      {
+        title: "Bucket of Water",
+        name: "bucketOfWater",
+        count: 1,
+      },
+      {
+        title: "Deadly Nightshade",
+        name: "deadlyNightshade",
+        count: 5,
+      },
+    ],
+  },
+];

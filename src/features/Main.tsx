@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { observer } from "mobx-react-lite";
 
 import Box from "@mui/material/Box";
@@ -14,7 +14,6 @@ import { useStore } from "../hooks/useStore";
 import Store from "../components/Store/Store";
 import Total from "../components/Total";
 
-
 const Main = () => {
   const {
     total,
@@ -23,13 +22,16 @@ const Main = () => {
     woodshedStore,
     smithyStore,
     kitchenStore,
-    mineStore
+    mineStore,
+    herbalistStore,
+    wellStore,
+    sewingStore,
+    workshopStore,
   } = useStore();
 
   return (
     <Box component="main">
       <Container maxWidth="md">
-
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>Hunting</Typography>
@@ -46,9 +48,11 @@ const Main = () => {
           </AccordionSummary>
 
           <AccordionDetails>
-            <Store store={woodshedStore} />
             <Store store={excavationShedStore} />
+            <Store store={herbalistStore} />
             <Store store={mineStore} />
+            <Store store={wellStore} />
+            <Store store={woodshedStore} />
           </AccordionDetails>
         </Accordion>
 
@@ -58,16 +62,17 @@ const Main = () => {
           </AccordionSummary>
 
           <AccordionDetails>
-            <Store store={smithyStore} />
             <Store store={kitchenStore} />
+            <Store store={sewingStore} />
+            <Store store={smithyStore} />
+            <Store store={workshopStore} />
           </AccordionDetails>
         </Accordion>
 
         <Total total={total} />
-
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default observer(Main)
+export default observer(Main);

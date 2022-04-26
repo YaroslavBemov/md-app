@@ -7,11 +7,10 @@ export interface IBaseItem {
 export interface IItem extends IBaseItem {
   mult?: number;
   resourse?: number;
-  durability?: number;
   recipe: IBaseItem[];
 }
 
-export type ITotal = Omit<IItem, 'recipe'>
+export type ITotal = Omit<IItem, "recipe">;
 
 export interface IStore {
   rootStore: IRootStore;
@@ -24,5 +23,5 @@ export interface IStore {
 
 export interface IRootStore {
   get total(): IBaseItem[];
-  saveAll(): void
+  saveAll(): void;
 }
