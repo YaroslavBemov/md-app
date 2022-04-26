@@ -2,6 +2,7 @@ export interface IBaseItem {
   title: string;
   name: string;
   count: number;
+  resourse?: number;
 }
 
 export interface IItem extends IBaseItem {

@@ -5,12 +5,14 @@ export function getTotal(array: IItem[]): IBaseItem[] {
 
   array.forEach((item) => {
     const mult = item.mult ?? 1
+    const resourse = item.resourse ?? 1
     if (item.count > 0) {
       if (total.length === 0) {
         total.push({
           title: item.title,
           name: item.name,
           count: item.count * mult,
+          resourse: item.count * mult * resourse
         });
 
         item.recipe.forEach((recipeItem) => {
@@ -27,11 +29,15 @@ export function getTotal(array: IItem[]): IBaseItem[] {
 
         if (detectedItem) {
           detectedItem.count += item.count * mult;
+          if (detectedItem.resourse) {
+            detectedItem.resourse += item.count * mult * resourse
+          }
         } else {
           total.push({
             title: item.title,
             name: item.name,
             count: item.count * mult,
+            resourse: item.count * mult * resourse
           });
         }
         item.recipe.forEach((recipeItem) => {

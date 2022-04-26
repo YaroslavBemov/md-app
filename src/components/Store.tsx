@@ -101,7 +101,7 @@ const Store = ({ store }: PropType) => {
                 key={item.name}
                 color={item.count < 0 ? "red" : "green"}
               >
-                {item.title}: {item.count}
+                {item.title}: {item.count} {item.resourse ? '(' + item.resourse + ')' : ''}
               </Typography>
             ))}
         </Box>
