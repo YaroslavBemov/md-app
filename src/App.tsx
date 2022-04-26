@@ -59,9 +59,13 @@ function App() {
         <CssBaseline />
         <ButtonAppBar />
         <Main />
-        <StickyFooter />
-      </Box>
-    </ThemeProvider>
+<<<<<<< HEAD
+  <StickyFooter />
+=======
+        <Footer />
+>>>>>>> 9fd969789e4984a81339b882e264c3bdb2f746d8
+      </Box >
+    </ThemeProvider >
   );
 }
 
