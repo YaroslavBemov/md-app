@@ -60,8 +60,8 @@ function App() {
         <ButtonAppBar />
         <Main />
         <StickyFooter />
-      </Box>
-    </ThemeProvider>
+      </Box >
+    </ThemeProvider >
   );
 }
 
