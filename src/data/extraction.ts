@@ -96,3 +96,19 @@ export const woodshed: IItem[] = [
     ],
   },
 ];
+
+
+export const mine: IItem[] = [
+  {
+    title: "Log",
+    name: "log",
+    count: 0,
+    recipe: [
+      {
+        title: "Axe",
+        name: "axe",
+        count: 2,
+      },
+    ],
+  },
+]

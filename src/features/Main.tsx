@@ -22,7 +22,8 @@ const Main = () => {
     excavationShedStore,
     woodshedStore,
     smithyStore,
-    kitchenStore
+    kitchenStore,
+    mineStore
   } = useStore();
 
   return (
@@ -45,8 +46,9 @@ const Main = () => {
           </AccordionSummary>
 
           <AccordionDetails>
-            <Store store={excavationShedStore} />
             <Store store={woodshedStore} />
+            <Store store={excavationShedStore} />
+            <Store store={mineStore} />
           </AccordionDetails>
         </Accordion>
 
