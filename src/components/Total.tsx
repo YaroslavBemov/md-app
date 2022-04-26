@@ -22,7 +22,7 @@ const Total = ({ total }: PropType) => {
         aria-controls="panel2a-content"
         id="panel2a-header"
       >
-        <Typography>Total</Typography>
+        <Typography sx={{ ml: 'auto', mr: 'auto' }}>Total</Typography>
       </AccordionSummary>
 
       <AccordionDetails>
