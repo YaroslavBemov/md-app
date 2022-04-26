@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import Container from "@mui/material/Container";
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -22,8 +22,14 @@ const ButtonAppBar = () => {
   const handleRemoveClick = () => clearAll()
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <AppBar
+      position="absolute"
+      sx={{
+        position: 'relative',
+        borderBottom: (t) => `1px solid ${t.palette.divider}`,
+      }}
+    >
+      <Container maxWidth='lg'>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Medieval Dynasty Tools Calculator
@@ -34,8 +40,8 @@ const ButtonAppBar = () => {
             {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>
-      </AppBar>
-    </Box>
+      </Container>
+    </AppBar>
   );
 }
 
