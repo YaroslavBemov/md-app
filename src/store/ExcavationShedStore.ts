@@ -20,6 +20,10 @@ export default class ExcavationShedStore implements IStore {
     changeCount(this.items, name, value);
   }
 
+  reset(): void {
+    this.items = excavationShed
+  }
+
   get total(): IBaseItem[] {
     return getTotal(this.items);
   }

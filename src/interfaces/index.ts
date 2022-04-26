@@ -14,6 +14,7 @@ export interface IStore {
   items: IItem[];
   name: string;
   changeCount: (name: string, value: number) => void;
+  reset(): void;
   get total(): IBaseItem[];
 }
 

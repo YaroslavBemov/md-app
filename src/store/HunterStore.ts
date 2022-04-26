@@ -20,6 +20,10 @@ export default class HunterStore implements IStore {
     changeCount(this.items, name, value);
   }
 
+  reset(): void {
+    this.items = hunter
+  }
+
   get total(): IBaseItem[] {
     return getTotal(this.items);
   }

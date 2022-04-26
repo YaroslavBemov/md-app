@@ -67,3 +67,7 @@ export function changeCount(array: IItem[], name: string, value: number): void {
 export function saveToLS(store: IStore): void {
   localStorage.setItem(store.name, JSON.stringify(store.items))
 }
+
+export function removeFromLS(store: IStore): void {
+  localStorage.removeItem(store.name)
+}

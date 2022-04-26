@@ -20,6 +20,10 @@ export default class WoodshedStore implements IStore {
     changeCount(this.items, name, value);
   }
 
+  reset(): void {
+    this.items = woodshed
+  }
+
   get total(): IBaseItem[] {
     return getTotal(this.items);
   }

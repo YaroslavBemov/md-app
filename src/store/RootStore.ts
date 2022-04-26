@@ -4,7 +4,7 @@ import WoodshedStore from "./WoodshedStore";
 import SmithyStore from "./SmithyStore";
 
 import { IItem, IBaseItem, IRootStore } from "../interfaces";
-import { getTotal, saveToLS } from "../helpers";
+import { getTotal, removeFromLS, saveToLS } from "../helpers";
 import UIStore from "./UiStore";
 
 export default class RootStore implements IRootStore {
@@ -38,5 +38,19 @@ export default class RootStore implements IRootStore {
     saveToLS(this.excavationShedStore)
     saveToLS(this.woodshedStore)
     saveToLS(this.smithyStore)
+  }
+
+  clearAll = () => {
+    removeFromLS(this.hunterStore)
+    this.hunterStore.reset()
+
+    removeFromLS(this.excavationShedStore)
+    this.excavationShedStore.reset()
+
+    removeFromLS(this.woodshedStore)
+    this.woodshedStore.reset()
+
+    removeFromLS(this.smithyStore)
+    this.smithyStore.reset()
   }
 }

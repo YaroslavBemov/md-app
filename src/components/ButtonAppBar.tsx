@@ -14,11 +14,12 @@ import { observer } from 'mobx-react-lite';
 
 
 const ButtonAppBar = () => {
-  const { uiStore, saveAll } = useStore()
+  const { uiStore, saveAll, clearAll } = useStore()
   const { mode } = uiStore
 
   const handleModeClick = () => uiStore.toggleMode()
   const handleSaveClick = () => saveAll()
+  const handleRemoveClick = () => clearAll()
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -27,7 +28,8 @@ const ButtonAppBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Medieval Dynasty Tools Calculator
           </Typography>
-          <Button onClick={handleSaveClick}>Save</Button>
+          <Button variant='contained' color='success' onClick={handleSaveClick}>Save</Button>
+          <Button sx={{ ml: 1 }} variant='contained' color='error' onClick={handleRemoveClick}>Clear</Button>
           <IconButton sx={{ ml: 1 }} onClick={handleModeClick} color="inherit">
             {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
