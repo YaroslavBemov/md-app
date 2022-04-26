@@ -11,16 +11,18 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { IStore } from "../interfaces";
+import { IStore } from "../../interfaces";
+import TotalItem from "./TotalItem";
+import ListItem from "./ListItem";
 
 type PropType = {
   store: IStore;
 };
 
 const Store = ({ store }: PropType) => {
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = event.target;
-    store.changeCount(name, value);
+    store.changeCount(name, Number(value));
   };
 
   // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,35 +59,7 @@ const Store = ({ store }: PropType) => {
             flexGrow: 1,
           }}
         >
-          {store.items.map((item) => (
-            <AccordionDetails key={item.name}>
-              <Paper
-                elevation={3}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  p: 1,
-                }}
-              >
-                <Typography>{item.title}</Typography>
-
-                <TextField
-                  // type="number"
-                  name={item.name}
-                  value={item.count}
-                  onChange={handleChange}
-                  label="Count"
-                  size="small"
-                  sx={{
-                    maxWidth: 80,
-                    ml: 2,
-                  }}
-                >
-                  {item.count}
-                </TextField>
-              </Paper>
-            </AccordionDetails>
-          ))}
+          {store.items.map((item) => <ListItem key={item.name} item={item} onChange={handleChange} />)}
         </Box>
 
         <Box
@@ -96,14 +70,7 @@ const Store = ({ store }: PropType) => {
         >
           {store.total
             .sort((a, b) => (a.count > b.count ? -1 : 1))
-            .map((item) => (
-              <Typography
-                key={item.name}
-                color={item.count < 0 ? "red" : "green"}
-              >
-                {item.title}: {item.count} {item.resourse ? '(' + item.resourse + ')' : ''}
-              </Typography>
-            ))}
+            .map((item) => <TotalItem key={item.name} item={item} />)}
         </Box>
       </Box>
     </Accordion>

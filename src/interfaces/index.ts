@@ -2,13 +2,15 @@ export interface IBaseItem {
   title: string;
   name: string;
   count: number;
-  resourse?: number;
 }
 
 export interface IItem extends IBaseItem {
   mult?: number;
+  resourse?: number;
   recipe: IBaseItem[];
 }
+
+export type ITotal = Omit<IItem, 'recipe'>
 
 export interface IStore {
   rootStore: IRootStore;

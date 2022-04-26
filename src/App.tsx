@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { useStore } from "./hooks/useStore";
 
-import Store from "./components/Store";
+import Store from "./components/Store/Store";
 import Total from "./components/Total";
 import ButtonAppBar from "./components/ButtonAppBar";
 import { Mode } from "./store/UiStore";

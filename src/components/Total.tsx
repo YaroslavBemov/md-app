@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { IBaseItem } from "../interfaces";
+import TotalItem from "./Store/TotalItem";
 
 type PropType = {
   total: IBaseItem[];
@@ -27,14 +28,7 @@ const Total = ({ total }: PropType) => {
       <AccordionDetails>
         {total
           .sort((a, b) => (a.count > b.count ? -1 : 1))
-          .map((item) => (
-            <Typography
-              key={item.name}
-              color={item.count < 0 ? "red" : "green"}
-            >
-              {item.title}: {item.count}
-            </Typography>
-          ))}
+          .map((item) => <TotalItem item={item} />)}
       </AccordionDetails>
     </Accordion>
   );

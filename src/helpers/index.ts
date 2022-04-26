@@ -1,11 +1,12 @@
-import { IBaseItem, IItem, IStore } from "../interfaces";
+import { IItem, IStore, ITotal } from "../interfaces";
 
-export function getTotal(array: IItem[]): IBaseItem[] {
-  const total: IBaseItem[] = [];
+export function getTotal(array: IItem[]): ITotal[] {
+  const total: ITotal[] = [];
 
   array.forEach((item) => {
     const mult = item.mult ?? 1
-    const resourse = item.resourse ?? 1
+    const resourse = (item.resourse && item.resourse > 1) ? item.resourse : 0
+
     if (item.count > 0) {
       if (total.length === 0) {
         total.push({
