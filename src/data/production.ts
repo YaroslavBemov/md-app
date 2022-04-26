@@ -180,3 +180,42 @@ export const smithy: IItem[] = [
     ],
   },
 ];
+
+export const kitchen: IItem[] = [
+  {
+    title: "Meat",
+    name: "meat",
+    count: 0,
+    resourse: 5,
+    recipe: [
+      {
+        title: "Log",
+        name: "log",
+        count: 1,
+      },
+      {
+        title: "Stick",
+        name: "stick",
+        count: 10,
+      },
+    ],
+  },
+  {
+    title: "Neat",
+    name: "neat",
+    count: 0,
+    resourse: 5,
+    recipe: [
+      {
+        title: "Log",
+        name: "log",
+        count: 1,
+      },
+      {
+        title: "Stick",
+        name: "stick",
+        count: 10,
+      },
+    ],
+  },
+]

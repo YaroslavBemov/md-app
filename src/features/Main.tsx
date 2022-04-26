@@ -22,6 +22,7 @@ const Main = () => {
     excavationShedStore,
     woodshedStore,
     smithyStore,
+    kitchenStore
   } = useStore();
 
   return (
@@ -56,6 +57,7 @@ const Main = () => {
 
           <AccordionDetails>
             <Store store={smithyStore} />
+            <Store store={kitchenStore} />
           </AccordionDetails>
         </Accordion>
 

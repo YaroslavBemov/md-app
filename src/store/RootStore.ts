@@ -6,6 +6,7 @@ import SmithyStore from "./SmithyStore";
 import { IItem, IBaseItem, IRootStore, ITotal } from "../interfaces";
 import { getTotal, removeFromLS, saveToLS } from "../helpers";
 import UIStore from "./UiStore";
+import KitchenStore from "./KitchenStore";
 
 export default class RootStore implements IRootStore {
   uiStore: UIStore
@@ -13,6 +14,7 @@ export default class RootStore implements IRootStore {
   excavationShedStore: ExcavationShedStore;
   woodshedStore: WoodshedStore;
   smithyStore: SmithyStore;
+  kitchenStore: KitchenStore
 
   constructor() {
     this.uiStore = new UIStore(this)
@@ -20,6 +22,7 @@ export default class RootStore implements IRootStore {
     this.excavationShedStore = new ExcavationShedStore(this);
     this.woodshedStore = new WoodshedStore(this);
     this.smithyStore = new SmithyStore(this);
+    this.kitchenStore = new KitchenStore(this)
   }
 
   get total(): ITotal[] {
@@ -28,6 +31,7 @@ export default class RootStore implements IRootStore {
       ...this.excavationShedStore.items,
       ...this.woodshedStore.items,
       ...this.smithyStore.items,
+      ...this.kitchenStore.items,
     ];
 
     return getTotal(items);
@@ -38,6 +42,7 @@ export default class RootStore implements IRootStore {
     saveToLS(this.excavationShedStore)
     saveToLS(this.woodshedStore)
     saveToLS(this.smithyStore)
+    saveToLS(this.kitchenStore)
   }
 
   clearAll = () => {
@@ -52,5 +57,8 @@ export default class RootStore implements IRootStore {
 
     removeFromLS(this.smithyStore)
     this.smithyStore.reset()
+
+    removeFromLS(this.kitchenStore)
+    this.kitchenStore.reset()
   }
 }
