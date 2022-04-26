@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite';
 import Typography from "@mui/material/Typography";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Paper from "@mui/material/Paper";
@@ -45,4 +46,4 @@ const ListItem = ({ item, onChange }: PropType) => {
   )
 }
 
-export default ListItem
+export default observer(ListItem)

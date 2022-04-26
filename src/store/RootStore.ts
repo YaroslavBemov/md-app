@@ -3,7 +3,7 @@ import HunterStore from "./HunterStore";
 import WoodshedStore from "./WoodshedStore";
 import SmithyStore from "./SmithyStore";
 
-import { IItem, IBaseItem, IRootStore } from "../interfaces";
+import { IItem, IBaseItem, IRootStore, ITotal } from "../interfaces";
 import { getTotal, removeFromLS, saveToLS } from "../helpers";
 import UIStore from "./UiStore";
 
@@ -22,7 +22,7 @@ export default class RootStore implements IRootStore {
     this.smithyStore = new SmithyStore(this);
   }
 
-  get total(): IBaseItem[] {
+  get total(): ITotal[] {
     const items: IItem[] = [
       ...this.hunterStore.items,
       ...this.excavationShedStore.items,

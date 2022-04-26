@@ -7,6 +7,7 @@ export interface IBaseItem {
 export interface IItem extends IBaseItem {
   mult?: number;
   resourse?: number;
+  durability?: number;
   recipe: IBaseItem[];
 }
 

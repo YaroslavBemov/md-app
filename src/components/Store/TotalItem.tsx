@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite';
 import Typography from "@mui/material/Typography";
 import { ITotal } from '../../interfaces'
 
@@ -20,4 +21,4 @@ const TotalItem = ({ item }: PropType) => {
   )
 }
 
-export default TotalItem
+export default observer(TotalItem)

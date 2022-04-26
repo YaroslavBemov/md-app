@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { woodshed } from "../data/extraction";
-import { IBaseItem, IRootStore, IStore } from "../interfaces";
+import { IBaseItem, IRootStore, IStore, ITotal } from "../interfaces";
 import { getTotal, changeCount } from "../helpers";
 
 export default class WoodshedStore implements IStore {
@@ -24,7 +24,7 @@ export default class WoodshedStore implements IStore {
     this.items = woodshed
   }
 
-  get total(): IBaseItem[] {
+  get total(): ITotal[] {
     return getTotal(this.items);
   }
 }

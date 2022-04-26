@@ -1,4 +1,5 @@
 import React from "react"
+import { observer } from "mobx-react-lite";
 
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -65,4 +66,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default observer(Main)

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { hunter } from "../data/hunting";
-import { IBaseItem, IItem, IRootStore, IStore } from "../interfaces";
+import { IBaseItem, IItem, IRootStore, IStore, ITotal } from "../interfaces";
 import { getTotal, changeCount } from "../helpers";
 
 export default class HunterStore implements IStore {
@@ -24,7 +24,7 @@ export default class HunterStore implements IStore {
     this.items = hunter
   }
 
-  get total(): IBaseItem[] {
+  get total(): ITotal[] {
     return getTotal(this.items);
   }
 }
