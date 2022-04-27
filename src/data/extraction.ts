@@ -169,7 +169,8 @@ export const well: IItem[] = [
     title: "Bucket of Water",
     name: "bucketOfWater",
     count: 0,
-    resourses: { food: 0, water: 10, wood: 0 },
+    mult: 10,
+    resourses: { food: 0, water: 25, wood: 0 },
     recipe: [
       {
         title: "Bucket",
@@ -182,7 +183,8 @@ export const well: IItem[] = [
     title: "Waterskin with Water",
     name: "waterskinWithWater",
     count: 0,
-    resourses: { food: 0, water: 10, wood: 0 },
+    mult: 4,
+    resourses: { food: 0, water: 25, wood: 0 },
     recipe: [
       {
         title: "Waterskin",
