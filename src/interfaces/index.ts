@@ -14,11 +14,11 @@ export interface IItem extends IBaseItem {
   mult?: number;
   resourses?: IResourses;
   durability?: number;
-  recipe: IBaseItem[];
+  recipe?: IBaseItem[];
 }
 
 export interface ITotal {
-  itemsTotal: IBaseItem[];
+  itemsTotal: IItem[];
   resoursesTotal: IResourses;
 }
 

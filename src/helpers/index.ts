@@ -1,3 +1,4 @@
+import { toJS } from "mobx";
 import { IItem, IResourses, IStore, ITotal } from "../interfaces";
 
 export function getTotal(array: IItem[]): ITotal {
@@ -12,34 +13,24 @@ export function getTotal(array: IItem[]): ITotal {
 
   array.forEach((item) => {
     const mult = item.mult ?? 1;
-
-    if (item.resourses !== undefined) {
-      if (item.resourses.food !== undefined) {
-        total.resoursesTotal.food += item.resourses.food * item.count * mult;
-      }
-      if (item.resourses.water !== undefined) {
-        total.resoursesTotal.water += item.resourses.water * item.count * mult;
-      }
-      if (item.resourses.wood !== undefined) {
-        total.resoursesTotal.wood += item.resourses.wood * item.count * mult;
-      }
-    }
-
+    // if total items is empty push item and items from recipe
     if (item.count > 0) {
       if (total.itemsTotal.length === 0) {
         total.itemsTotal.push({
           title: item.title,
           name: item.name,
           count: item.count * mult,
+          resourses: item.resourses,
         });
 
-        item.recipe.forEach((recipeItem) => {
+        item.recipe?.forEach((recipeItem) => {
           total.itemsTotal.push({
             title: recipeItem.title,
             name: recipeItem.name,
             count: 0 - recipeItem.count * item.count,
           });
         });
+        // else find item and change count
       } else {
         const detectedItem = total.itemsTotal.find(
           (totalItem) => totalItem.name === item.name
@@ -52,10 +43,11 @@ export function getTotal(array: IItem[]): ITotal {
             title: item.title,
             name: item.name,
             count: item.count * mult,
+            resourses: item.resourses,
           });
         }
-
-        item.recipe.forEach((recipeItem) => {
+        // and change count from recipe if found
+        item.recipe?.forEach((recipeItem) => {
           const detectedRecipeItem = total.itemsTotal.find(
             (totalRecipeItem) => totalRecipeItem.name === recipeItem.name
           );
@@ -70,6 +62,20 @@ export function getTotal(array: IItem[]): ITotal {
             });
           }
         });
+      }
+    }
+  });
+  // calculate total resourses
+  total.itemsTotal.forEach((item) => {
+    if (item.resourses !== undefined) {
+      if (item.resourses.food !== undefined) {
+        total.resoursesTotal.food += item.resourses.food * item.count;
+      }
+      if (item.resourses.water !== undefined) {
+        total.resoursesTotal.water += item.resourses.water * item.count;
+      }
+      if (item.resourses.wood !== undefined) {
+        total.resoursesTotal.wood += item.resourses.wood * item.count;
       }
     }
   });
