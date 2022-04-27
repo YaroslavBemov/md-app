@@ -5,21 +5,21 @@ export interface IBaseItem {
 }
 
 export interface IResourses {
-  food: number
-  water: number
-  wood: number
+  food: number;
+  water: number;
+  wood: number;
 }
 
 export interface IItem extends IBaseItem {
   mult?: number;
   resourses?: IResourses;
-  durability?: number
+  durability?: number;
   recipe: IBaseItem[];
 }
 
 export interface ITotal {
-  itemsTotal: IBaseItem[]
-  resoursesTotal: IResourses
+  itemsTotal: IBaseItem[];
+  resoursesTotal: IResourses;
 }
 
 export interface IStore {
@@ -28,10 +28,10 @@ export interface IStore {
   name: string;
   changeCount: (name: string, value: number) => void;
   reset(): void;
-  get total(): IBaseItem[];
+  get total(): ITotal;
 }
 
 export interface IRootStore {
-  get total(): IBaseItem[];
+  get total(): ITotal;
   saveAll(): void;
 }

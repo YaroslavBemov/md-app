@@ -24,7 +24,7 @@ export default class ExcavationShedStore implements IStore {
     this.items = excavationShed;
   }
 
-  get total(): ITotal[] {
+  get total(): ITotal {
     return getTotal(this.items);
   }
 }

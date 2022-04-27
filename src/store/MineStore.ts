@@ -3,18 +3,17 @@ import { mine } from "../data/extraction";
 import { changeCount, getTotal } from "../helpers";
 import { IItem, IRootStore, IStore, ITotal } from "../interfaces";
 
-
 export default class MineStore implements IStore {
   rootStore;
   items: IItem[] = [];
-  name = "Mine"
+  name = "Mine";
 
   constructor(rootStore: IRootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 
-    const savedItems = localStorage.getItem(this.name)
-    this.items = savedItems ? JSON.parse(savedItems) : mine
+    const savedItems = localStorage.getItem(this.name);
+    this.items = savedItems ? JSON.parse(savedItems) : mine;
   }
 
   changeCount(name: string, value: number): void {
@@ -22,10 +21,10 @@ export default class MineStore implements IStore {
   }
 
   reset(): void {
-    this.items = mine
+    this.items = mine;
   }
 
-  get total(): ITotal[] {
+  get total(): ITotal {
     return getTotal(this.items);
   }
 }

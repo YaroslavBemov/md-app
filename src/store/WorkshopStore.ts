@@ -24,7 +24,7 @@ export default class HunterStore implements IStore {
     this.items = workshop;
   }
 
-  get total(): ITotal[] {
+  get total(): ITotal {
     return getTotal(this.items);
   }
 }

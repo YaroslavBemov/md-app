@@ -40,7 +40,7 @@ export default class RootStore implements IRootStore {
     this.workshopStore = new WorkshopStore(this);
   }
 
-  get total(): ITotal[] {
+  get total(): ITotal {
     const items: IItem[] = [
       ...this.hunterStore.items,
       ...this.excavationShedStore.items,

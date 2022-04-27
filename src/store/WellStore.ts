@@ -24,7 +24,7 @@ export default class KitchenStore implements IStore {
     this.items = well;
   }
 
-  get total(): ITotal[] {
+  get total(): ITotal {
     return getTotal(this.items);
   }
 }

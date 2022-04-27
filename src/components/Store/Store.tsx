@@ -38,11 +38,13 @@ const Store = ({ store }: PropType) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Box sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1
-          }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Typography>{store.name}</Typography>
             {/* <Button onClick={handleClick}>Save</Button> */}
           </Box>
@@ -59,7 +61,13 @@ const Store = ({ store }: PropType) => {
             flexGrow: 1,
           }}
         >
-          {store.items.map((item) => <StoreListItem key={item.name} item={item} onChange={handleChange} />)}
+          {store.items.map((item) => (
+            <StoreListItem
+              key={item.name}
+              item={item}
+              onChange={handleChange}
+            />
+          ))}
         </Box>
 
         <Box
@@ -68,9 +76,11 @@ const Store = ({ store }: PropType) => {
             p: 1,
           }}
         >
-          {store.total
+          {store.total.itemsTotal
             .sort((a, b) => (a.count > b.count ? -1 : 1))
-            .map((item) => <StoreTotalItem key={item.name} item={item} />)}
+            .map((item) => (
+              <StoreTotalItem key={item.name} item={item} />
+            ))}
         </Box>
       </Box>
     </Accordion>

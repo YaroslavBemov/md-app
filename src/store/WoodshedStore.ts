@@ -24,7 +24,7 @@ export default class WoodshedStore implements IStore {
     this.items = woodshed;
   }
 
-  get total(): ITotal[] {
+  get total(): ITotal {
     return getTotal(this.items);
   }
 }

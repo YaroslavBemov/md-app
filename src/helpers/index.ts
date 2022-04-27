@@ -6,20 +6,27 @@ export function getTotal(array: IItem[]): ITotal {
     resoursesTotal: {
       food: 0,
       water: 0,
-      wood: 0
-    }
+      wood: 0,
+    },
   };
 
   array.forEach((item) => {
-    const mult = item.mult ?? 1
+    const mult = item.mult ?? 1;
 
-    item.resourses?.food ? total.resoursesTotal.food += item.resourses.food * item.count * mult : null
-    item.resourses?.water ? total.resoursesTotal.water += item.resourses.water * item.count * mult : null
-    item.resourses?.wood ? total.resoursesTotal.wood += item.resourses.wood * item.count * mult : null
+    if (item.resourses !== undefined) {
+      if (item.resourses.food !== undefined) {
+        total.resoursesTotal.food += item.resourses.food * item.count * mult;
+      }
+      if (item.resourses.water !== undefined) {
+        total.resoursesTotal.water += item.resourses.water * item.count * mult;
+      }
+      if (item.resourses.wood !== undefined) {
+        total.resoursesTotal.wood += item.resourses.wood * item.count * mult;
+      }
+    }
 
     if (item.count > 0) {
       if (total.itemsTotal.length === 0) {
-
         total.itemsTotal.push({
           title: item.title,
           name: item.name,
@@ -33,9 +40,7 @@ export function getTotal(array: IItem[]): ITotal {
             count: 0 - recipeItem.count * item.count,
           });
         });
-
       } else {
-
         const detectedItem = total.itemsTotal.find(
           (totalItem) => totalItem.name === item.name
         );
@@ -81,9 +86,9 @@ export function changeCount(array: IItem[], name: string, value: number): void {
 }
 
 export function saveToLS(store: IStore): void {
-  localStorage.setItem(store.name, JSON.stringify(store.items))
+  localStorage.setItem(store.name, JSON.stringify(store.items));
 }
 
 export function removeFromLS(store: IStore): void {
-  localStorage.removeItem(store.name)
+  localStorage.removeItem(store.name);
 }
