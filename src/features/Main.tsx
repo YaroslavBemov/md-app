@@ -12,7 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useStore } from "../hooks/useStore";
 
 import Store from "../components/Store/Store";
-import Total from "../components/Total";
+import Total from "../components/Total/Total";
 
 const Main = () => {
   const {

@@ -17,7 +17,7 @@ export const hunter: IItem[] = [
     title: "Dried meat",
     name: "driedMeat",
     count: 0,
-    resourse: 5,
+    resourses: { food: 5, water: 0, wood: 0 },
     recipe: [
       {
         title: "Meat",
@@ -30,7 +30,7 @@ export const hunter: IItem[] = [
     title: "Salted meat",
     name: "saltedMeat",
     count: 0,
-    resourse: 7, // -2 water
+    resourses: { food: 7, water: -2, wood: 0 },
     recipe: [
       {
         title: "Meat",

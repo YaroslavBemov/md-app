@@ -11,7 +11,7 @@ type PropType = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const ListItem = ({ item, onChange }: PropType) => {
+const StoreListItem = ({ item, onChange }: PropType) => {
   const { title, name, count } = item
   const mult = item.mult ? ' x' + item.mult : ''
 
@@ -46,4 +46,4 @@ const ListItem = ({ item, onChange }: PropType) => {
   )
 }
 
-export default observer(ListItem)
+export default observer(StoreListItem)

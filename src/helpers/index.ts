@@ -1,55 +1,64 @@
-import { IItem, IStore, ITotal } from "../interfaces";
+import { IItem, IResourses, IStore, ITotal } from "../interfaces";
 
-export function getTotal(array: IItem[]): ITotal[] {
-  const total: ITotal[] = [];
+export function getTotal(array: IItem[]): ITotal {
+  const total: ITotal = {
+    itemsTotal: [],
+    resoursesTotal: {
+      food: 0,
+      water: 0,
+      wood: 0
+    }
+  };
 
   array.forEach((item) => {
     const mult = item.mult ?? 1
-    const resourse = (item.resourse && item.resourse > 1) ? item.resourse : 0
+
+    item.resourses?.food ? total.resoursesTotal.food += item.resourses.food * item.count * mult : null
+    item.resourses?.water ? total.resoursesTotal.water += item.resourses.water * item.count * mult : null
+    item.resourses?.wood ? total.resoursesTotal.wood += item.resourses.wood * item.count * mult : null
 
     if (item.count > 0) {
-      if (total.length === 0) {
-        total.push({
+      if (total.itemsTotal.length === 0) {
+
+        total.itemsTotal.push({
           title: item.title,
           name: item.name,
           count: item.count * mult,
-          resourse: item.count * mult * resourse
         });
 
         item.recipe.forEach((recipeItem) => {
-          total.push({
+          total.itemsTotal.push({
             title: recipeItem.title,
             name: recipeItem.name,
             count: 0 - recipeItem.count * item.count,
           });
         });
+
       } else {
-        const detectedItem = total.find(
+
+        const detectedItem = total.itemsTotal.find(
           (totalItem) => totalItem.name === item.name
         );
 
         if (detectedItem) {
           detectedItem.count += item.count * mult;
-          if (detectedItem.resourse) {
-            detectedItem.resourse += item.count * mult * resourse
-          }
         } else {
-          total.push({
+          total.itemsTotal.push({
             title: item.title,
             name: item.name,
             count: item.count * mult,
-            resourse: item.count * mult * resourse
           });
         }
+
         item.recipe.forEach((recipeItem) => {
-          const detectedRecipeItem = total.find(
+          const detectedRecipeItem = total.itemsTotal.find(
             (totalRecipeItem) => totalRecipeItem.name === recipeItem.name
           );
 
           if (detectedRecipeItem) {
             detectedRecipeItem.count -= recipeItem.count * item.count;
           } else {
-            total.push({
+            total.itemsTotal.push({
               title: recipeItem.title,
               name: recipeItem.name,
               count: 0 - recipeItem.count * item.count,

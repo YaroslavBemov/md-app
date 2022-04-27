@@ -7,11 +7,12 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { IBaseItem, ITotal } from "../interfaces";
-import TotalItem from "./Store/TotalItem";
+import { IBaseItem, ITotal } from "../../interfaces";
+import TotalItem from "./TotalItem";
+import TotalResourses from "./TotalResourses";
 
 type PropType = {
-  total: ITotal[];
+  total: ITotal;
 };
 
 const Total = ({ total }: PropType) => {
@@ -26,7 +27,8 @@ const Total = ({ total }: PropType) => {
       </AccordionSummary>
 
       <AccordionDetails>
-        {total
+        <TotalResourses resourses={total.resoursesTotal} />
+        {total.itemsTotal
           .sort((a, b) => (a.count > b.count ? -1 : 1))
           .map((item) => <TotalItem key={item.name} item={item} />)}
       </AccordionDetails>

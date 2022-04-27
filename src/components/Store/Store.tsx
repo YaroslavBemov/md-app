@@ -12,8 +12,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { IStore } from "../../interfaces";
-import TotalItem from "./TotalItem";
-import ListItem from "./ListItem";
+import StoreTotalItem from "./StoreTotalItem";
+import StoreListItem from "./StoreListItem";
 
 type PropType = {
   store: IStore;
@@ -59,7 +59,7 @@ const Store = ({ store }: PropType) => {
             flexGrow: 1,
           }}
         >
-          {store.items.map((item) => <ListItem key={item.name} item={item} onChange={handleChange} />)}
+          {store.items.map((item) => <StoreListItem key={item.name} item={item} onChange={handleChange} />)}
         </Box>
 
         <Box
@@ -70,7 +70,7 @@ const Store = ({ store }: PropType) => {
         >
           {store.total
             .sort((a, b) => (a.count > b.count ? -1 : 1))
-            .map((item) => <TotalItem key={item.name} item={item} />)}
+            .map((item) => <StoreTotalItem key={item.name} item={item} />)}
         </Box>
       </Box>
     </Accordion>

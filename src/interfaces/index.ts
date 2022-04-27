@@ -4,13 +4,23 @@ export interface IBaseItem {
   count: number;
 }
 
+export interface IResourses {
+  food: number
+  water: number
+  wood: number
+}
+
 export interface IItem extends IBaseItem {
   mult?: number;
-  resourse?: number;
+  resourses?: IResourses;
+  durability?: number
   recipe: IBaseItem[];
 }
 
-export type ITotal = Omit<IItem, "recipe">;
+export interface ITotal {
+  itemsTotal: IBaseItem[]
+  resoursesTotal: IResourses
+}
 
 export interface IStore {
   rootStore: IRootStore;
