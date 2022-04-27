@@ -1,20 +1,25 @@
-import React, { createContext } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { createContext } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { injectStores } from "@mobx-devtools/tools";
 
-import RootStore from './store/RootStore'
-const store = new RootStore()
-export const RootStoreContext = createContext(store)
+import RootStore from "./store/RootStore";
+const store = new RootStore();
+export const RootStoreContext = createContext(store);
+
+injectStores({
+  store,
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <RootStoreContext.Provider value={store}>
       <App />
     </RootStoreContext.Provider>
-  </React.StrictMode >,
-  document.getElementById('root')
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
