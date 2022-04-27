@@ -66,7 +66,7 @@ export const woodshed: IItem[] = [
     resourses: {
       food: 0,
       water: 0,
-      wood: 5
+      wood: 5,
     },
     recipe: [
       {
@@ -169,6 +169,7 @@ export const well: IItem[] = [
     title: "Bucket of Water",
     name: "bucketOfWater",
     count: 0,
+    resourses: { food: 0, water: 10, wood: 0 },
     recipe: [
       {
         title: "Bucket",
@@ -181,6 +182,7 @@ export const well: IItem[] = [
     title: "Waterskin with Water",
     name: "waterskinWithWater",
     count: 0,
+    resourses: { food: 0, water: 10, wood: 0 },
     recipe: [
       {
         title: "Waterskin",

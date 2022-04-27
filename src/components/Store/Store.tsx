@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import { IStore } from "../../interfaces";
 import StoreTotalItem from "./StoreTotalItem";
 import StoreListItem from "./StoreListItem";
+import StoreTotalResourses from "./StoreTotalResourses";
 
 type PropType = {
   store: IStore;
@@ -76,6 +77,7 @@ const Store = ({ store }: PropType) => {
             p: 1,
           }}
         >
+          <StoreTotalResourses total={store.total.resoursesTotal} />
           {store.total.itemsTotal
             .sort((a, b) => (a.count > b.count ? -1 : 1))
             .map((item) => (

@@ -1,23 +1,25 @@
-import React from 'react'
-import { observer } from 'mobx-react-lite';
+import React from "react";
+import { observer } from "mobx-react-lite";
 import Typography from "@mui/material/Typography";
-import { IBaseItem, IResourses, ITotal } from '../../interfaces'
-import Box from '@mui/material/Box';
+import { IResourses } from "../../interfaces";
+import Box from "@mui/material/Box";
 
 type PropType = {
-  resourses: IResourses
-}
+  resourses: IResourses;
+};
 
 const StoreTotalItem = ({ resourses }: PropType) => {
-  const { food, water, wood } = resourses
+  const { food, water, wood } = resourses;
 
   // const color = count < 0 ? "red" : "green"
 
   return (
-    <Box>
-      Food: {food} Water: {water} Wood: {wood}
+    <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+      <Box>{food ? `Food: ${food}` : null}</Box>
+      <Box>{water ? `Water: ${water}` : null}</Box>
+      <Box>{wood ? `Wood: ${wood}` : null}</Box>
     </Box>
-  )
-}
+  );
+};
 
-export default observer(StoreTotalItem)
+export default observer(StoreTotalItem);

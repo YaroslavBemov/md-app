@@ -1,19 +1,19 @@
-import React from 'react'
-import { observer } from 'mobx-react-lite';
+import React from "react";
+import { observer } from "mobx-react-lite";
 import Typography from "@mui/material/Typography";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
-import { IItem } from '../../interfaces'
+import { IItem } from "../../interfaces";
 
 type PropType = {
   item: IItem;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 const StoreListItem = ({ item, onChange }: PropType) => {
-  const { title, name, count } = item
-  const mult = item.mult ? ' x' + item.mult : ''
+  const { title, name, count } = item;
+  const mult = item.mult ? " x" + item.mult : "";
 
   return (
     <AccordionDetails key={item.name}>
@@ -25,7 +25,10 @@ const StoreListItem = ({ item, onChange }: PropType) => {
           p: 1,
         }}
       >
-        <Typography>{title}{mult}</Typography>
+        <Typography>
+          {title}
+          {mult}
+        </Typography>
 
         <TextField
           // type="number"
@@ -43,7 +46,7 @@ const StoreListItem = ({ item, onChange }: PropType) => {
         </TextField>
       </Paper>
     </AccordionDetails>
-  )
-}
+  );
+};
 
-export default observer(StoreListItem)
+export default observer(StoreListItem);
