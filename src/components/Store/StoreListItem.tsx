@@ -14,6 +14,7 @@ type PropType = {
 const StoreListItem = ({ item, onChange }: PropType) => {
   const { title, name, count } = item;
   const mult = item.mult ? " x" + item.mult : "";
+  const portions = item.portions ? ' (' + item.portions + ')' : ''
 
   return (
     <AccordionDetails key={item.name}>
@@ -28,6 +29,7 @@ const StoreListItem = ({ item, onChange }: PropType) => {
         <Typography>
           {title}
           {mult}
+          {portions}
         </Typography>
 
         <TextField

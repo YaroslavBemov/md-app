@@ -1,23 +1,22 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite';
 import Typography from "@mui/material/Typography";
-import { IBaseItem } from '../../interfaces'
+import { IItem } from '../../interfaces'
 
 type PropType = {
-  item: IBaseItem
+  item: IItem
 }
 
 const TotalItem = ({ item }: PropType) => {
   const { title, count } = item
-  // const resourse = item.resourse ? '(' + item.resourse + ')' : ''
+  const portions = item.portions ? ' (' + item.portions + ')' : ''
   const color = count < 0 ? "red" : "green"
 
   return (
     <Typography
       color={color}
     >
-      {title}: {count}
-      {/* {resourse} */}
+      {title}: {count}{portions}
     </Typography>
   )
 }

@@ -7,7 +7,7 @@ type PropType = {
   resourses: IResourses;
 };
 
-const StoreTotalItem = ({ resourses }: PropType) => {
+const TotalResourses = ({ resourses }: PropType) => {
   const { food, water, wood } = resourses;
 
   // const color = count < 0 ? "red" : "green"
@@ -21,4 +21,4 @@ const StoreTotalItem = ({ resourses }: PropType) => {
   );
 };
 
-export default observer(StoreTotalItem);
+export default observer(TotalResourses);

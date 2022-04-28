@@ -44,6 +44,9 @@ export const woodshed: IItem[] = [
     title: "Log",
     name: "log",
     count: 0,
+    resourses: {
+      wood: 10,
+    },
     recipe: [
       {
         title: "Axe",
@@ -64,8 +67,6 @@ export const woodshed: IItem[] = [
     count: 0,
     mult: 4,
     resourses: {
-      food: 0,
-      water: 0,
       wood: 5,
     },
     recipe: [
@@ -169,8 +170,8 @@ export const well: IItem[] = [
     title: "Bucket of Water",
     name: "bucketOfWater",
     count: 0,
-    mult: 10,
-    resourses: { food: 0, water: 25, wood: 0 },
+    portions: 10,
+    resourses: { water: 25 },
     recipe: [
       {
         title: "Bucket",
@@ -183,8 +184,8 @@ export const well: IItem[] = [
     title: "Waterskin with Water",
     name: "waterskinWithWater",
     count: 0,
-    mult: 4,
-    resourses: { food: 0, water: 25, wood: 0 },
+    portions: 4,
+    resourses: { water: 25 },
     recipe: [
       {
         title: "Waterskin",
@@ -203,7 +204,7 @@ export const herbalistHut: IItem[] = [
     recipe: [
       {
         title: "Wooden Vial",
-        name: "woodenvial",
+        name: "woodenVial",
         count: 1,
       },
       {

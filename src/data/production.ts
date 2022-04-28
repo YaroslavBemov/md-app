@@ -186,7 +186,7 @@ export const kitchen: IItem[] = [
     title: "Roasted Meat",
     name: "roastedMeat",
     count: 0,
-    resourses: { food: 6, water: 0, wood: 0 },
+    resourses: { food: 6 },
     recipe: [
       {
         title: "Meat",
@@ -212,7 +212,7 @@ export const kitchen: IItem[] = [
     title: "Potage",
     name: "potage",
     count: 0,
-    resourses: { food: 30, water: 0, wood: 0 },
+    resourses: { food: 30 },
     recipe: [
       {
         title: "Cabbage",
@@ -235,7 +235,7 @@ export const kitchen: IItem[] = [
     title: "Stew",
     name: "stew",
     count: 0,
-    resourses: { food: 25, water: 0, wood: 0 },
+    resourses: { food: 25 },
     recipe: [
       {
         title: "Carrot",
@@ -258,7 +258,7 @@ export const kitchen: IItem[] = [
     title: "Meat with Gravy",
     name: "meatWithGravy",
     count: 0,
-    resourses: { food: 30, water: 0, wood: 0 },
+    resourses: { food: 30 },
     recipe: [
       {
         title: "Onion",
@@ -281,7 +281,7 @@ export const kitchen: IItem[] = [
     title: "Mushroom Soup",
     name: "mushroomSoup",
     count: 0,
-    resourses: { food: 10, water: 0, wood: 0 },
+    resourses: { food: 10 },
     recipe: [
       {
         title: "Bolete Mushroom",

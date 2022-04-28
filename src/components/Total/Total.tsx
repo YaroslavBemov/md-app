@@ -10,6 +10,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ITotal } from "../../interfaces";
 import TotalItem from "./TotalItem";
 import TotalResourses from "./TotalResourses";
+import TotalTools from "./TotalTools";
 
 type PropType = {
   total: ITotal;
@@ -28,6 +29,7 @@ const Total = ({ total }: PropType) => {
 
       <AccordionDetails>
         <TotalResourses resourses={total.resoursesTotal} />
+        <TotalTools tools={total.toolsTotal} />
         {total.itemsTotal
           .sort((a, b) => (a.count > b.count ? -1 : 1))
           .map((item) => <TotalItem key={item.name} item={item} />)}

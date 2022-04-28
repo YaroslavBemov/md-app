@@ -5,21 +5,27 @@ export interface IBaseItem {
 }
 
 export interface IResourses {
-  food: number;
-  water: number;
-  wood: number;
+  food?: number;
+  water?: number;
+  wood?: number;
+}
+
+export interface ITools {
+  [key: string]: number;
 }
 
 export interface IItem extends IBaseItem {
   mult?: number;
   resourses?: IResourses;
   durability?: number;
+  portions?: number;
   recipe?: IBaseItem[];
 }
 
 export interface ITotal {
   itemsTotal: IItem[];
   resoursesTotal: IResourses;
+  toolsTotal: ITools;
 }
 
 export interface IStore {
