@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite';
 import Typography from "@mui/material/Typography";
-import { IBaseItem, ITotal } from '../../interfaces'
+import { IBaseItem } from '../../interfaces'
 
 type PropType = {
   item: IBaseItem

@@ -7,7 +7,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { IBaseItem, ITotal } from "../../interfaces";
+import { ITotal } from "../../interfaces";
 import TotalItem from "./TotalItem";
 import TotalResourses from "./TotalResourses";
 

@@ -1,5 +1,4 @@
-import { toJS } from "mobx";
-import { IItem, IResourses, IStore, ITotal } from "../interfaces";
+import { IItem, IStore, ITotal } from "../interfaces";
 
 export function getTotal(array: IItem[]): ITotal {
   const total: ITotal = {

@@ -22,7 +22,7 @@ function App() {
     if (mode === 'dark' || mode === 'light') {
       uiStore.setMode(mode)
     }
-  }, [])
+  }, [uiStore])
 
   const { mode } = uiStore
 

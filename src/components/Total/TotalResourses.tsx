@@ -1,6 +1,5 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import Typography from "@mui/material/Typography";
 import { IResourses } from "../../interfaces";
 import Box from "@mui/material/Box";
 
