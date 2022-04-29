@@ -29,7 +29,7 @@ export function getTotal(array: IItem[]): ITotal {
             name: item.name,
             count: item.count * mult,
             resourses: item.resourses,
-            portions
+            portions: item.count * portions
           });
         } else {
           total.itemsTotal.push({
@@ -67,7 +67,7 @@ export function getTotal(array: IItem[]): ITotal {
               name: item.name,
               count: item.count * mult,
               resourses: item.resourses,
-              portions
+              portions: item.count * portions
             });
           } else {
             total.itemsTotal.push({
@@ -88,21 +88,28 @@ export function getTotal(array: IItem[]): ITotal {
               (totalRecipeItem) => totalRecipeItem.name === recipeItem.name
             );
 
+            console.log(detectedRecipeItem);  //  undefind while bucketOfWater
             if (detectedRecipeItem) {
-
               if (detectedRecipeItem.portions !== undefined) {
                 // TODO [WIP]
-                let itemCount =
-                  detectedRecipeItem.portions -= recipeItem.count * item.count
+                detectedRecipeItem.portions -= recipeItem.count * item.count
+                // @ts-ignore
+                detectedRecipeItem.count = Math.floor(detectedRecipeItem.portions / portions)
               } else {
+                console.log('here');
+
                 detectedRecipeItem.count -= recipeItem.count * item.count;
               }
             } else {
-              total.itemsTotal.push({
-                title: recipeItem.title,
-                name: recipeItem.name,
-                count: 0 - recipeItem.count * item.count,
-              });
+              if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
+                total.toolsTotal[recipeItem.name] = recipeItem.count * item.count
+              } else {
+                total.itemsTotal.push({
+                  title: recipeItem.title,
+                  name: recipeItem.name,
+                  count: 0 - recipeItem.count * item.count,
+                });
+              }
             }
           }
         });
@@ -114,15 +121,15 @@ export function getTotal(array: IItem[]): ITotal {
     if (item.count > 0 && item.resourses !== undefined) {
       if (item.resourses.food !== undefined) {
         // @ts-ignore
-        total.resoursesTotal.food += item.resourses.food * item.count * item.portions;
+        total.resoursesTotal.food += item.resourses.food * item.count;
       }
       if (item.resourses.water !== undefined) {
         // @ts-ignore
-        total.resoursesTotal.water += item.resourses.water * item.count * item.portions;
+        total.resoursesTotal.water += item.resourses.water * item.portions;
       }
       if (item.resourses.wood !== undefined) {
         // @ts-ignore
-        total.resoursesTotal.wood += item.resourses.wood * item.count * item.portions;
+        total.resoursesTotal.wood += item.resourses.wood * item.count;
       }
     }
   });
