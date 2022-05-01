@@ -1,14 +1,14 @@
 import { makeAutoObservable } from "mobx";
 import { well } from "../data/extraction";
 import { changeCount, getTotal } from "../helpers";
-import { IItem, IRootStore, IStore, ITotal } from "../interfaces";
+import { IItem, IStore, ITotal } from "../interfaces";
 
-export default class KitchenStore implements IStore {
+export default class WellStore implements IStore {
   rootStore;
   items: IItem[] = [];
   name = "Well";
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: any) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 

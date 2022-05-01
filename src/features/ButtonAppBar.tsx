@@ -13,12 +13,12 @@ import { useStore } from "../hooks/useStore";
 import { observer } from "mobx-react-lite";
 
 const ButtonAppBar = () => {
-  const { uiStore, saveAll, clearAll } = useStore();
+  const { uiStore, totalStore } = useStore();
   const { mode } = uiStore;
 
   const handleModeClick = () => uiStore.toggleMode();
-  const handleSaveClick = () => saveAll();
-  const handleRemoveClick = () => clearAll();
+  const handleSaveClick = () => totalStore.saveAll();
+  const handleRemoveClick = () => totalStore.clearAll();
 
   return (
     <AppBar

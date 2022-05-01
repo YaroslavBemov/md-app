@@ -29,7 +29,7 @@ export interface ITotal {
 }
 
 export interface IStore {
-  rootStore: IRootStore;
+  rootStore: any;
   items: IItem[];
   name: string;
   changeCount: (name: string, value: number) => void;
@@ -37,7 +37,12 @@ export interface IStore {
   get total(): ITotal;
 }
 
-export interface IRootStore {
+export interface ITotalStore {
+  rootStore: any;
+  name: string;
   get total(): ITotal;
-  saveAll(): void;
 }
+
+// export interface IRootStore {
+//   [index: string]: IStore;
+// }

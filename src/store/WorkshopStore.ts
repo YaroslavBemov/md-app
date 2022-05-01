@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { workshop } from "../data/production";
-import { IItem, IRootStore, IStore, ITotal } from "../interfaces";
+import { IItem, IStore, ITotal } from "../interfaces";
 import { getTotal, changeCount } from "../helpers";
 
 export default class HunterStore implements IStore {
@@ -8,7 +8,7 @@ export default class HunterStore implements IStore {
   items: IItem[] = [];
   name = "Workshop";
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: any) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
 

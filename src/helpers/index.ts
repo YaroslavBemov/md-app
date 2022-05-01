@@ -14,123 +14,89 @@ export function getTotal(array: IItem[]): ITotal {
       knife: 0,
       pickaxe: 0,
       shovel: 0,
-    }
+    },
   };
 
-  array.forEach((item) => {
-    const mult = item.mult ?? 1;
-    const portions = item.portions
-    // if total items is empty push item and items from recipe
-    if (item.count > 0) {
-      if (total.itemsTotal.length === 0) {
-        if (portions) {
-          total.itemsTotal.push({
-            title: item.title,
-            name: item.name,
-            count: item.count * mult,
-            resourses: item.resourses,
-            portions: item.count * portions
-          });
-        } else {
-          total.itemsTotal.push({
-            title: item.title,
-            name: item.name,
-            count: item.count * mult,
-            resourses: item.resourses,
-          });
-        }
+  const tempArray = array.filter((item: IItem) => item.count > 0);
 
-        item.recipe?.forEach((recipeItem) => {
-          if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
-            total.toolsTotal[recipeItem.name] = recipeItem.count * item.count
+  if (tempArray.length > 0) {
+    tempArray.forEach((item: IItem) => {
+      const mult = item.mult ?? 1;
+
+      const tempItem = {
+        title: item.title,
+        name: item.name,
+        count: item.count * mult,
+        recipe: item.recipe,
+      };
+
+      if (item.portions) {
+        Object.assign(tempItem, { portions: item.count * item.portions });
+      }
+
+      if (item.resourses) {
+        Object.assign(tempItem, { resourses: item.resourses });
+      }
+      console.log(tempItem);
+
+      total.itemsTotal.push(tempItem);
+    });
+  }
+
+  if (total.itemsTotal.length > 0) {
+    total.itemsTotal.forEach((item) => {
+      // const portions = item.portions ?? 1;
+      // console.log("portions - " + portions);
+
+      item.recipe?.forEach((recipeItem) => {
+        if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
+          total.toolsTotal[recipeItem.name] -= recipeItem.count * item.count;
+        } else {
+          const detectedRecipeItem = total.itemsTotal.find(
+            (totalRecipeItem) => totalRecipeItem.name === recipeItem.name
+          );
+
+          if (detectedRecipeItem) {
+            if (detectedRecipeItem.portions) {
+              detectedRecipeItem.portions -=
+                recipeItem.count * Math.abs(item.count);
+              // detectedRecipeItem.count = Math.floor(
+              //   detectedRecipeItem.portions / 10
+              // );
+            } else {
+              detectedRecipeItem.count -=
+                recipeItem.count * Math.abs(item.count);
+            }
           } else {
             total.itemsTotal.push({
               title: recipeItem.title,
               name: recipeItem.name,
-              count: 0 - recipeItem.count * item.count,
-            });
-          }
-        });
-        // else find item and change count
-      } else {
-        const detectedItem = total.itemsTotal.find(
-          (totalItem) => totalItem.name === item.name
-        );
-
-        if (detectedItem) {
-          detectedItem.count += item.count * mult;
-        } else {
-
-          if (portions) {
-            total.itemsTotal.push({
-              title: item.title,
-              name: item.name,
-              count: item.count * mult,
-              resourses: item.resourses,
-              portions: item.count * portions
-            });
-          } else {
-            total.itemsTotal.push({
-              title: item.title,
-              name: item.name,
-              count: item.count * mult,
-              resourses: item.resourses,
+              count: 0 - recipeItem.count * Math.abs(item.count),
             });
           }
         }
-        // and change count from recipe if found
-        item.recipe?.forEach((recipeItem) => {
-          if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
-            total.toolsTotal[recipeItem.name] += recipeItem.count * item.count
-          } else {
+      });
+    });
+  }
 
-            const detectedRecipeItem = total.itemsTotal.find(
-              (totalRecipeItem) => totalRecipeItem.name === recipeItem.name
-            );
-
-            console.log(detectedRecipeItem);  //  undefind while bucketOfWater
-            if (detectedRecipeItem) {
-              if (detectedRecipeItem.portions !== undefined) {
-                // TODO [WIP]
-                detectedRecipeItem.portions -= recipeItem.count * item.count
-                // @ts-ignore
-                detectedRecipeItem.count = Math.floor(detectedRecipeItem.portions / portions)
-              } else {
-                console.log('here');
-
-                detectedRecipeItem.count -= recipeItem.count * item.count;
-              }
-            } else {
-              if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
-                total.toolsTotal[recipeItem.name] = recipeItem.count * item.count
-              } else {
-                total.itemsTotal.push({
-                  title: recipeItem.title,
-                  name: recipeItem.name,
-                  count: 0 - recipeItem.count * item.count,
-                });
-              }
-            }
-          }
-        });
-      }
-    }
-  });
   // calculate total resourses
   total.itemsTotal.forEach((item) => {
-    if (item.count > 0 && item.resourses !== undefined) {
-      if (item.resourses.food !== undefined) {
-        // @ts-ignore
-        total.resoursesTotal.food += item.resourses.food * item.count;
-      }
-      if (item.resourses.water !== undefined) {
+    if (item.resourses?.food) {
+      // @ts-ignore
+      total.resoursesTotal.food += item.resourses.food * item.count;
+    }
+    if (item.resourses?.water) {
+      if (item.portions !== undefined) {
         // @ts-ignore
         total.resoursesTotal.water += item.resourses.water * item.portions;
-      }
-      if (item.resourses.wood !== undefined) {
+      } else {
         // @ts-ignore
-        total.resoursesTotal.wood += item.resourses.wood * item.count;
+        total.resoursesTotal.water += item.resourses.water * item.count;
       }
+    }
+    if (item.resourses?.wood) {
+      // @ts-ignore
+      total.resoursesTotal.wood += item.resourses.wood * item.count;
     }
   });
 

@@ -16,7 +16,7 @@ import Total from "../components/Total/Total";
 
 const Main = () => {
   const {
-    total,
+    totalStore,
     hunterStore,
     excavationShedStore,
     woodshedStore,
@@ -69,7 +69,7 @@ const Main = () => {
           </AccordionDetails>
         </Accordion>
 
-        <Total total={total} />
+        <Total store={totalStore} />
       </Container>
     </Box>
   );

@@ -14,7 +14,7 @@ type PropType = {
 const StoreListItem = ({ item, onChange }: PropType) => {
   const { title, name, count } = item;
   const mult = item.mult ? " x" + item.mult : "";
-  const portions = item.portions ? ' (' + item.portions + ')' : ''
+  const portions = item.portions ? " (" + item.portions + ")" : "";
 
   return (
     <AccordionDetails key={item.name}>
