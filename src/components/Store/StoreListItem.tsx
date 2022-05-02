@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { observer } from "mobx-react-lite";
 import Typography from "@mui/material/Typography";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -8,13 +8,33 @@ import { IItem } from "../../interfaces";
 
 type PropType = {
   item: IItem;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  change: (name: string, value: number) => void;
 };
 
-const StoreListItem = ({ item, onChange }: PropType) => {
+const StoreListItem = ({ item, change }: PropType) => {
   const { title, name, count } = item;
   const mult = item.mult ? " x" + item.mult : "";
   const portions = item.portions ? " (" + item.portions + ")" : "";
+
+  const refValue = useRef("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    let valueToChange: number = +(+value).toFixed(2);
+
+    if (refValue.current[refValue.current.length - 1] === ".") {
+      valueToChange = parseFloat(refValue.current + value[value.length - 1]);
+      refValue.current = "";
+    }
+
+    if (value[value.length - 1] === ".") {
+      refValue.current = value;
+    } else {
+      refValue.current = "";
+    }
+
+    change(name, valueToChange);
+  };
 
   return (
     <AccordionDetails key={item.name}>
@@ -36,7 +56,7 @@ const StoreListItem = ({ item, onChange }: PropType) => {
           // type="number"
           name={name}
           value={count}
-          onChange={onChange}
+          onChange={handleChange}
           label="Count"
           size="small"
           sx={{

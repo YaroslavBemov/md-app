@@ -18,9 +18,8 @@ type PropType = {
 };
 
 const Store = ({ store }: PropType) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let { name, value } = event.target;
-    store.changeCount(name, Number(value));
+  const handleChange = (name: string, value: number) => {
+    store.changeCount(name, value);
   };
 
   return (
@@ -54,11 +53,7 @@ const Store = ({ store }: PropType) => {
           }}
         >
           {store.items.map((item) => (
-            <StoreListItem
-              key={item.name}
-              item={item}
-              onChange={handleChange}
-            />
+            <StoreListItem key={item.name} item={item} change={handleChange} />
           ))}
         </Box>
 
