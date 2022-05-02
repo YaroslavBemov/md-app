@@ -14,9 +14,9 @@ const TotalResourses = ({ resourses }: PropType) => {
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-      <Box>{food ? `Food: ${food}` : null}</Box>
-      <Box>{water ? `Water: ${water}` : null}</Box>
-      <Box>{wood ? `Wood: ${wood}` : null}</Box>
+      <Box>{food ? `Food: ${+food.toFixed(2)}` : null}</Box>
+      <Box>{water ? `Water: ${+water.toFixed(2)}` : null}</Box>
+      <Box>{wood ? `Wood: ${+wood.toFixed(2)}` : null}</Box>
     </Box>
   );
 };

@@ -12,9 +12,9 @@ const StoreTotalResourses = ({ total }: PropType) => {
 
   return (
     <>
-      <Typography>{food ? `Food: ${food}` : null}</Typography>
-      <Typography>{water ? `Water: ${water}` : null}</Typography>
-      <Typography>{wood ? `Wood: ${wood}` : null}</Typography>
+      <Typography>{food ? `Food: ${+food.toFixed(2)}` : null}</Typography>
+      <Typography>{water ? `Water: ${+water.toFixed(2)}` : null}</Typography>
+      <Typography>{wood ? `Wood: ${+wood.toFixed(2)}` : null}</Typography>
     </>
   );
 };

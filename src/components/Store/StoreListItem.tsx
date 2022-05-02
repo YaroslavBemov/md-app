@@ -20,13 +20,22 @@ const StoreListItem = ({ item, change }: PropType) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
+    // remove second dot
+    if (value.split(".").length > 2) {
+      return;
+    }
+
+    // format value
     let valueToChange: number = +(+value).toFixed(2);
 
+    // check dot
     if (refValue.current[refValue.current.length - 1] === ".") {
       valueToChange = parseFloat(refValue.current + value[value.length - 1]);
       refValue.current = "";
     }
 
+    // save dot from formatting to float number
     if (value[value.length - 1] === ".") {
       refValue.current = value;
     } else {
