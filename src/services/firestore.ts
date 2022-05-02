@@ -8,12 +8,12 @@ import {
 import { IFeedbackData } from "../interfaces";
 
 const firebaseConfig = {
-  apiKey: "${{secrets.FIREBASE_API_KEY}}",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "md-calc.firebaseapp.com",
   projectId: "md-calc",
   storageBucket: "md-calc.appspot.com",
-  messagingSenderId: "${{secrets.FIREBASE_MESSAGING_SENDER_ID}}",
-  appId: "${{secrets.FIREBASE_APP_ID}}",
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
