@@ -12,7 +12,6 @@ const TotalItem = ({ item }: PropType) => {
   let color = count < 0 ? "red" : "green";
 
   const portions = item.portions !== undefined ? item.portions : undefined;
-  console.log(portions);
 
   if (portions !== undefined) {
     color = portions < 0 ? "red" : "green";

@@ -23,11 +23,6 @@ const Store = ({ store }: PropType) => {
     store.changeCount(name, Number(value));
   };
 
-  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   event.stopPropagation()
-  //   localStorage.setItem(store.name, JSON.stringify(store.items))
-  // }
-
   return (
     <Accordion>
       <Paper elevation={3}>
@@ -44,7 +39,6 @@ const Store = ({ store }: PropType) => {
             }}
           >
             <Typography>{store.name}</Typography>
-            {/* <Button onClick={handleClick}>Save</Button> */}
           </Box>
         </AccordionSummary>
       </Paper>

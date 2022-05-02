@@ -37,7 +37,6 @@ export function getTotal(array: IItem[]): ITotal {
       if (item.resourses) {
         Object.assign(tempItem, { resourses: item.resourses });
       }
-      console.log(tempItem);
 
       total.itemsTotal.push(tempItem);
     });
@@ -45,9 +44,6 @@ export function getTotal(array: IItem[]): ITotal {
 
   if (total.itemsTotal.length > 0) {
     total.itemsTotal.forEach((item) => {
-      // const portions = item.portions ?? 1;
-      // console.log("portions - " + portions);
-
       item.recipe?.forEach((recipeItem) => {
         if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
           total.toolsTotal[recipeItem.name] -= recipeItem.count * item.count;
@@ -60,9 +56,6 @@ export function getTotal(array: IItem[]): ITotal {
             if (detectedRecipeItem.portions) {
               detectedRecipeItem.portions -=
                 recipeItem.count * Math.abs(item.count);
-              // detectedRecipeItem.count = Math.floor(
-              //   detectedRecipeItem.portions / 10
-              // );
             } else {
               detectedRecipeItem.count -=
                 recipeItem.count * Math.abs(item.count);
