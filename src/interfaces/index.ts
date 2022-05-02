@@ -46,3 +46,17 @@ export interface ITotalStore {
 // export interface IRootStore {
 //   [index: string]: IStore;
 // }
+
+export interface IFeedbackData {
+  name: string;
+  feedback: string;
+  email?: string;
+}
+
+export type Status = "success" | "error";
+
+export interface ISnackData {
+  status: Status;
+  message: string;
+  open: boolean;
+}

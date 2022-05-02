@@ -1,22 +1,18 @@
 import React, { createContext } from "react";
 import ReactDOM from "react-dom";
+
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { injectStores } from "@mobx-devtools/tools";
+import Router from "./routes/Router";
 
 import RootStore from "./store/RootStore";
 const store = new RootStore();
 export const RootStoreContext = createContext(store);
 
-injectStores({
-  store,
-});
-
 ReactDOM.render(
   <React.StrictMode>
     <RootStoreContext.Provider value={store}>
-      <App />
+      <Router />
     </RootStoreContext.Provider>
   </React.StrictMode>,
   document.getElementById("root")

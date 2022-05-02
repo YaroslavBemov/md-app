@@ -2,66 +2,63 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 import Box from "@mui/material/Box";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import { useStore } from "./hooks/useStore";
 
 import ButtonAppBar from "./features/ButtonAppBar";
 import StickyFooter from "./features/StickyFooter";
-import Main from "./features/Main";
-
+import { Outlet } from "react-router-dom";
 
 function App() {
-  const {
-    uiStore
-  } = useStore();
+  const { uiStore } = useStore();
 
   useEffect(() => {
-    const mode = localStorage.getItem('mode')
-    if (mode === 'dark' || mode === 'light') {
-      uiStore.setMode(mode)
+    const mode = localStorage.getItem("mode");
+    if (mode === "dark" || mode === "light") {
+      uiStore.setMode(mode);
     }
-  }, [uiStore])
+  }, [uiStore]);
 
-  const { mode } = uiStore
+  const { mode } = uiStore;
 
   const theme = createTheme({
     palette: {
-      mode
+      mode,
     },
     typography: {
       fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'MedievalSharp',
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "MedievalSharp",
         '"Segoe UI"',
-        'Roboto',
+        "Roboto",
         '"Helvetica Neue"',
-        'Arial',
-        'cursive',
+        "Arial",
+        "cursive",
         '"Apple Color Emoji"',
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
-      ].join(','),
-    }
+      ].join(","),
+    },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
         }}
       >
         <CssBaseline />
         <ButtonAppBar />
-        <Main />
+        <Outlet />
         <StickyFooter />
-      </Box >
-    </ThemeProvider >
+      </Box>
+    </ThemeProvider>
   );
 }
 
