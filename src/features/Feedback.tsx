@@ -61,7 +61,7 @@ const Feedback = () => {
   useEffect(() => {
     setIsDisabled(!formData.name || !formData.feedback || error);
     setError(checked && !formData.email);
-  });
+  }, [formData.name, formData.feedback, formData.email, error, checked]);
 
   return (
     <Container component="main" maxWidth="xs">
