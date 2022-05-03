@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "site": "md-calc",
     "public": "build",
     "ignore": [
       "firebase.json",
