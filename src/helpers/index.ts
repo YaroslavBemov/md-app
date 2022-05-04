@@ -1,5 +1,70 @@
 import { IItem, IStore, ITotal } from "../interfaces";
 
+export function mergeTotal(array: ITotal[]): ITotal {
+  const total: ITotal = {
+    itemsTotal: [],
+    resoursesTotal: {
+      food: 0,
+      water: 0,
+      wood: 0,
+    },
+    toolsTotal: {
+      hummer: 0,
+      axe: 0,
+      knife: 0,
+      pickaxe: 0,
+      shovel: 0,
+    },
+  }
+
+  array.forEach(storeTotal => {
+
+    storeTotal.itemsTotal.forEach(storeItem => {
+
+      if (total.itemsTotal.length === 0) {
+
+        const tempItem = {
+          title: storeItem.title,
+          name: storeItem.name,
+          count: storeItem.count
+        }
+        if (storeItem.portions) {
+          Object.assign(tempItem, { portions: storeItem.portions });
+        }
+        total.itemsTotal.push(tempItem)
+
+      } else {
+
+        const detectedItem = total.itemsTotal.find(totalItem =>
+          totalItem.name === storeItem.name
+        )
+
+        if (detectedItem) {
+          detectedItem.count += storeItem.count
+          if (detectedItem.portions && storeItem.portions) {
+            detectedItem.portions += storeItem.portions
+          }
+        } else {
+          const tempItem = {
+            title: storeItem.title,
+            name: storeItem.name,
+            count: storeItem.count
+          }
+          if (storeItem.portions) {
+            Object.assign(tempItem, { portions: storeItem.portions });
+          }
+          total.itemsTotal.push(tempItem)
+        }
+
+      }
+
+    })
+  })
+  console.log(total);
+
+  return total
+}
+
 export function getTotal(array: IItem[]): ITotal {
   const total: ITotal = {
     itemsTotal: [],

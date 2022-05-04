@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { getTotal, removeFromLS, saveToLS } from "../helpers";
+import { mergeTotal, removeFromLS, saveToLS } from "../helpers";
 import { IItem, ITotal, ITotalStore } from "../interfaces";
 
 export default class TotalStore implements ITotalStore {
@@ -12,20 +12,20 @@ export default class TotalStore implements ITotalStore {
   }
 
   get total(): ITotal {
-    const items: IItem[] = [
-      ...this.rootStore.hunterStore.items,
-      ...this.rootStore.excavationShedStore.items,
-      ...this.rootStore.woodshedStore.items,
-      ...this.rootStore.smithyStore.items,
-      ...this.rootStore.kitchenStore.items,
-      ...this.rootStore.mineStore.items,
-      ...this.rootStore.herbalistStore.items,
-      ...this.rootStore.wellStore.items,
-      ...this.rootStore.sewingStore.items,
-      ...this.rootStore.workshopStore.items,
-    ];
+    const items: ITotal[] = [];
 
-    return getTotal(items);
+    items.push(this.rootStore.hunterStore.total)
+    items.push(this.rootStore.excavationShedStore.total)
+    items.push(this.rootStore.woodshedStore.total)
+    items.push(this.rootStore.smithyStore.total)
+    items.push(this.rootStore.kitchenStore.total)
+    items.push(this.rootStore.mineStore.total)
+    items.push(this.rootStore.herbalistStore.total)
+    items.push(this.rootStore.wellStore.total)
+    items.push(this.rootStore.sewingStore.total)
+    items.push(this.rootStore.workshopStore.total)
+
+    return mergeTotal(items);
   }
 
   saveAll = () => {
