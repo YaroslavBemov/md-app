@@ -17,6 +17,7 @@ export function mergeTotal(array: ITotal[]): ITotal {
     },
   }
 
+  // merge items
   array.forEach(storeTotal => {
 
     storeTotal.itemsTotal.forEach(storeItem => {
@@ -40,10 +41,63 @@ export function mergeTotal(array: ITotal[]): ITotal {
         )
 
         if (detectedItem) {
-          detectedItem.count += storeItem.count
-          if (detectedItem.portions && storeItem.portions) {
-            detectedItem.portions += storeItem.portions
+
+          if (detectedItem.name === 'bucketOfWater') {
+
+            // detected         store
+            // count: -1        count: 1
+            //                  portions: 10
+            // count: 1         count: 1
+            // portions: 10     portions: 10
+
+            if (storeItem.count > 0) {
+              console.log('> 0');
+              console.log('detectedItem.count ' + detectedItem.count);  //  -5
+              console.log('detectedItem.portions ' + detectedItem.portions);  //  undefined
+              console.log('storeItem.count' + storeItem.count); //  1
+              console.log('storeItem.portions ' + storeItem.portions);  //  10
+
+
+              detectedItem.count = storeItem.count
+              if (storeItem.portions) {
+                if (detectedItem.portions) {
+                  detectedItem.portions -= detectedItem.count
+                } else {
+                  detectedItem.portions = storeItem.portions - detectedItem.count;
+                }
+              }
+            } else {
+              console.log('else');
+
+              if (detectedItem.portions) {
+                detectedItem.portions += storeItem.count
+              } else {
+                Object.assign(detectedItem, { portions: 0 - storeItem.count })
+              }
+            }
+
+            // if (storeItem.count < 0) {
+            //   console.log(-1);
+            //   if (detectedItem.portions) {
+            //     detectedItem.portions += storeItem.count
+            //   } else {
+            //     Object.assign(detectedItem, { portions: 0 - storeItem.count })
+            //   }
+            // } else {
+            //   detectedItem.count = storeItem.count
+            //   if (detectedItem.portions) {
+            //     detectedItem.portions += storeItem.portions
+            //   }
+
+            // }
+
+          } else {
+            detectedItem.count += storeItem.count
+            if (detectedItem.portions && storeItem.portions) {
+              detectedItem.portions += storeItem.portions
+            }
           }
+
         } else {
           const tempItem = {
             title: storeItem.title,
@@ -60,7 +114,22 @@ export function mergeTotal(array: ITotal[]): ITotal {
 
     })
   })
-  console.log(total);
+
+  // merge resourses
+  array.forEach(storeTotal => {
+    Object.keys(total.resoursesTotal).forEach(resourse => {
+      // @ts-ignore
+      total.resoursesTotal[resourse] += storeTotal.resoursesTotal[resourse]
+    })
+  })
+
+  // merge tools
+  array.forEach(storeTotal => {
+    Object.keys(total.toolsTotal).forEach(tool => {
+      // @ts-ignore
+      total.toolsTotal[tool] += storeTotal.toolsTotal[tool]
+    })
+  })
 
   return total
 }
@@ -111,6 +180,7 @@ export function getTotal(array: IItem[]): ITotal {
     total.itemsTotal.forEach((item) => {
       item.recipe?.forEach((recipeItem) => {
         if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
+          // @ts-ignore
           total.toolsTotal[recipeItem.name] -= recipeItem.count * item.count;
         } else {
           const detectedRecipeItem = total.itemsTotal.find(
@@ -140,20 +210,16 @@ export function getTotal(array: IItem[]): ITotal {
   // calculate total resourses
   total.itemsTotal.forEach((item) => {
     if (item.resourses?.food) {
-      // @ts-ignore
       total.resoursesTotal.food += item.resourses.food * item.count;
     }
     if (item.resourses?.water) {
       if (item.portions !== undefined) {
-        // @ts-ignore
         total.resoursesTotal.water += item.resourses.water * item.portions;
       } else {
-        // @ts-ignore
         total.resoursesTotal.water += item.resourses.water * item.count;
       }
     }
     if (item.resourses?.wood) {
-      // @ts-ignore
       total.resoursesTotal.wood += item.resourses.wood * item.count;
     }
   });

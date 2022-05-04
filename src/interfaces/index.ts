@@ -10,8 +10,26 @@ export interface IResourses {
   wood?: number;
 }
 
+export interface IResoursesTotal {
+  food: number;
+  water: number;
+  wood: number;
+}
+
 export interface ITools {
-  [key: string]: number;
+  hummer?: number;
+  axe?: number;
+  knife?: number;
+  pickaxe?: number;
+  shovel?: number;
+}
+
+export interface IToolsTotal {
+  hummer: number;
+  axe: number;
+  knife: number;
+  pickaxe: number;
+  shovel: number;
 }
 
 export interface IItem extends IBaseItem {
@@ -24,8 +42,8 @@ export interface IItem extends IBaseItem {
 
 export interface ITotal {
   itemsTotal: IItem[];
-  resoursesTotal: IResourses;
-  toolsTotal: ITools;
+  resoursesTotal: IResoursesTotal;
+  toolsTotal: IToolsTotal;
 }
 
 export interface IStore {

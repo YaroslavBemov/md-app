@@ -20,8 +20,8 @@ export default class TotalStore implements ITotalStore {
     items.push(this.rootStore.smithyStore.total)
     items.push(this.rootStore.kitchenStore.total)
     items.push(this.rootStore.mineStore.total)
-    items.push(this.rootStore.herbalistStore.total)
     items.push(this.rootStore.wellStore.total)
+    items.push(this.rootStore.herbalistStore.total)
     items.push(this.rootStore.sewingStore.total)
     items.push(this.rootStore.workshopStore.total)
 
