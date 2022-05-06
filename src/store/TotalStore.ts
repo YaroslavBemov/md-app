@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { mergeTotal, removeFromLS, saveToLS } from "../helpers";
-import { IItem, ITotal, ITotalStore } from "../interfaces";
+import { ITotal, ITotalStore } from "../interfaces";
 
 export default class TotalStore implements ITotalStore {
   rootStore;
