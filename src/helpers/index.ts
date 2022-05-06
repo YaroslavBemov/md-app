@@ -149,12 +149,9 @@ export function getTotal(array: IItem[]): ITotal {
       }
 
       total.itemsTotal.push(tempItem);
-    });
-  }
 
-  if (total.itemsTotal.length > 0) {
-    total.itemsTotal.forEach((item) => {
       item.recipe?.forEach((recipeItem) => {
+
         if (Object.keys(total.toolsTotal).includes(recipeItem.name)) {
           // @ts-ignore
           total.toolsTotal[recipeItem.name] -= recipeItem.count * item.count;
