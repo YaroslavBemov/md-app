@@ -44,30 +44,17 @@ export function mergeTotal(array: ITotal[]): ITotal {
 
           if (detectedItem.name === 'bucketOfWater') {
 
-            // detected         store
-            // count: -1        count: 1
-            //                  portions: 10
-            // count: 1         count: 1
-            // portions: 10     portions: 10
-
             if (storeItem.count > 0) {
-              console.log('> 0');
-              console.log('detectedItem.count ' + detectedItem.count);  //  -5
-              console.log('detectedItem.portions ' + detectedItem.portions);  //  undefined
-              console.log('storeItem.count' + storeItem.count); //  1
-              console.log('storeItem.portions ' + storeItem.portions);  //  10
 
-
-              detectedItem.count = storeItem.count
+              detectedItem.count += storeItem.count
               if (storeItem.portions) {
                 if (detectedItem.portions) {
-                  detectedItem.portions -= detectedItem.count
+                  detectedItem.portions += storeItem.portions
                 } else {
-                  detectedItem.portions = storeItem.portions - detectedItem.count;
+                  Object.assign(detectedItem, { portions: 0 + storeItem.portions });
                 }
               }
             } else {
-              console.log('else');
 
               if (detectedItem.portions) {
                 detectedItem.portions += storeItem.count
@@ -76,26 +63,8 @@ export function mergeTotal(array: ITotal[]): ITotal {
               }
             }
 
-            // if (storeItem.count < 0) {
-            //   console.log(-1);
-            //   if (detectedItem.portions) {
-            //     detectedItem.portions += storeItem.count
-            //   } else {
-            //     Object.assign(detectedItem, { portions: 0 - storeItem.count })
-            //   }
-            // } else {
-            //   detectedItem.count = storeItem.count
-            //   if (detectedItem.portions) {
-            //     detectedItem.portions += storeItem.portions
-            //   }
-
-            // }
-
           } else {
             detectedItem.count += storeItem.count
-            if (detectedItem.portions && storeItem.portions) {
-              detectedItem.portions += storeItem.portions
-            }
           }
 
         } else {
@@ -122,6 +91,13 @@ export function mergeTotal(array: ITotal[]): ITotal {
       total.resoursesTotal[resourse] += storeTotal.resoursesTotal[resourse]
     })
   })
+
+  // recount water
+  const bucketOfWater = total.itemsTotal.find(totalItem => totalItem.name === 'bucketOfWater')
+  if (bucketOfWater && bucketOfWater.portions !== undefined) {
+    const diff = (bucketOfWater.count * 10 - bucketOfWater.portions) * 25
+    total.resoursesTotal.water -= diff
+  }
 
   // merge tools
   array.forEach(storeTotal => {
